@@ -1,101 +1,245 @@
 @extends('admin.master')
-@section('title','Banner')
+
+@section('title', 'Banner')
+
 @section('breadcrumb')
-     <a href="admin/banner" class="btn btn-primary btn-sm">List</a>
+    <a href="{{ url('admin/banner') }}" class="nbms-btn-secondary btn-sm">
+        <i class="fa fa-list"></i> List
+    </a>
 @endsection
+
 @section('content')
 
-<form class="form-horizontal" role="form" action="{{ url('admin/banner') }}" method="post" enctype="multipart/form-data">
-           {{ csrf_field() }}         
-<div class="col-md-12">
-            <!-- Input Fields -->
-            <div class="panel">
-              <div class="panel-heading">
-                <span class="panel-title">New Banner or Popup</span>
-              </div>
-              <div class="panel-body"> 
-             
-                  <div class="form-group">
-                    <label for="inputStandard" class="col-lg-3 control-label">Title</label>
-                    <div class="col-lg-6">
-                      <div class="bs-component">
-                        <input type="text" id="inputStandard" name="title" class="form-control" placeholder="" />
-                      </div>
-                    </div>
-                  </div>
+    <div class="tray tray-center nbms-page">
 
-                   <div class="form-group">
-                    <label for="inputStandard" class="col-lg-3 control-label">Caption1</label>
-                    <div class="col-lg-6">
-                      <div class="bs-component">
-                        <input type="text" id="inputStandard" name="caption" class="form-control" placeholder="" />
-                      </div>
-                    </div>
-                  </div>
+        {{-- Page Header --}}
+        <div class="nbms-page-header">
+            <div>
+                <h2 class="nbms-page-title">
+                    <i class="fa fa-picture-o"></i>
+                    Create Banner
+                </h2>
 
-                      <div class="form-group">
-                    <label class="col-lg-3 control-label" for="videolink">Caption2</label>
-                    <div class="col-lg-6">
-                      <div class="bs-component">
-                        <input type="text" class="form-control" name="video" placeholder="" /> <br />                       
-                      </div>
-                    </div>
-                  </div> 
-               
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label" for="textArea2">Content</label>
-                    <div class="col-lg-6">
-                      <div class="bs-component">
-                        <textarea class="form-control my-editor" id="textArea2" name="content" rows="3"></textarea>
-                      </div>
-                    </div>
-                  </div>                 
-                  
-               <div class="form-group">
-                    <label class="col-lg-3 control-label" for="banner">Picture</label>
-                    <div class="col-lg-6">
-                      <div class="bs-component">
-                        <input type="file" class="form-control" name="picture"/>
-                      </div>
-                      ( Width: 1500px, Height:500px all time fix size )
-                    </div>
-                  </div>
+                <p class="nbms-page-subtitle">
+                    Add a new banner or popup to your website
+                </p>
+            </div>
+        </div>
 
-                   <div class="form-group">
-                    <label class="col-lg-3 control-label" for="link">Link Title</label>
-                    <div class="col-lg-6">
-                      <div class="bs-component">
-                        <input type="text" class="form-control" name="link_title" placeholder="Link Title" /> <br />                       
-                      </div>
-                    </div>
-                  </div> 
 
-                 <div class="form-group">
-                    <label class="col-lg-3 control-label" for="link">VideoLink</label>
-                    <div class="col-lg-6">
-                      <div class="bs-component">
-                        <input type="text" class="form-control" name="link" placeholder="http://www.google.com" /> <br />                       
-                          <i><small> Example: https://www.google.com </small></i>
-                      </div>
-                      
-                    </div>
-                  </div> 
+        <form
+            class="form-horizontal nbms-form"
+            role="form"
+            action="{{ url('admin/banner') }}"
+            method="post"
+            enctype="multipart/form-data"
+        >
 
-              
-                 
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label" for=""></label>
-                    <div class="col-lg-6">
-                      <div class="bs-component">
-                        <input type="submit" class="form-control btn btn-primary" name="submit" value="Submit" />
-                      </div>
-                    </div>
-                  </div> 
-                
-              </div>
-            </div>          
-          </div>
+            {{ csrf_field() }}
 
-          
-          </form>
+            <div class="panel nbms-panel">
+
+                <div class="panel-heading nbms-panel-heading">
+                    <div>
+                        <span class="panel-title">
+                            <i class="fa fa-image"></i>
+                            Banner Information
+                        </span>
+
+                        <small>
+                            Enter the banner details below
+                        </small>
+                    </div>
+                </div>
+
+
+                <div class="panel-body nbms-form-body">
+
+                    {{-- Title --}}
+                    <div class="form-group nbms-form-group">
+
+                        <label for="banner-title" class="col-lg-3 control-label">
+                            Title
+                        </label>
+
+                        <div class="col-lg-6">
+                            <input
+                                type="text"
+                                id="banner-title"
+                                name="title"
+                                class="form-control"
+                                placeholder="Enter banner title"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    {{-- Caption 1 --}}
+                    <div class="form-group nbms-form-group">
+
+                        <label for="banner-caption" class="col-lg-3 control-label">
+                            Caption1
+                        </label>
+
+                        <div class="col-lg-6">
+                            <input
+                                type="text"
+                                id="banner-caption"
+                                name="caption"
+                                class="form-control"
+                                placeholder="Enter caption"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    {{-- Caption 2 --}}
+                    <div class="form-group nbms-form-group">
+
+                        <label class="col-lg-3 control-label" for="banner-video">
+                            Caption2
+                        </label>
+
+                        <div class="col-lg-6">
+
+                            <input
+                                type="text"
+                                id="banner-video"
+                                class="form-control"
+                                name="video"
+                                placeholder="Enter second caption"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Content --}}
+                    <div class="form-group nbms-form-group">
+
+                        <label class="col-lg-3 control-label" for="textArea2">
+                            Content
+                        </label>
+
+                        <div class="col-lg-6">
+
+                            <textarea
+                                class="form-control my-editor"
+                                id="textArea2"
+                                name="content"
+                                rows="3"
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Picture --}}
+                    <div class="form-group nbms-form-group">
+
+                        <label class="col-lg-3 control-label" for="banner">
+                            Picture
+                        </label>
+
+                        <div class="col-lg-6">
+
+                            <input
+                                type="file"
+                                id="banner"
+                                class="form-control nbms-file-input"
+                                name="picture"
+                            >
+
+                            <div class="nbms-help-text">
+                                <i class="fa fa-info-circle"></i>
+                                Recommended size: <strong>1500px × 500px</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Link Title --}}
+                    <div class="form-group nbms-form-group">
+
+                        <label class="col-lg-3 control-label" for="link-title">
+                            Link Title
+                        </label>
+
+                        <div class="col-lg-6">
+
+                            <input
+                                type="text"
+                                id="link-title"
+                                class="form-control"
+                                name="link_title"
+                                placeholder="Enter link title"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Video Link --}}
+                    <div class="form-group nbms-form-group">
+
+                        <label class="col-lg-3 control-label" for="banner-link">
+                            VideoLink
+                        </label>
+
+                        <div class="col-lg-6">
+
+                            <input
+                                type="text"
+                                id="banner-link"
+                                class="form-control"
+                                name="link"
+                                placeholder="https://www.google.com"
+                            >
+
+                            <div class="nbms-help-text">
+                                <i class="fa fa-link"></i>
+                                Example: <strong>https://www.google.com</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Submit --}}
+                    <div class="form-group nbms-form-group nbms-submit-group">
+
+                        <label class="col-lg-3 control-label"></label>
+
+                        <div class="col-lg-6">
+
+                            <button
+                                type="submit"
+                                class="nbms-btn-submit"
+                                name="submit"
+                            >
+                                <i class="fa fa-check"></i>
+                                Submit
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
 @endsection

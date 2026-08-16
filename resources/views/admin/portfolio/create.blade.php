@@ -1,222 +1,435 @@
 @extends('admin.master')
-@section('title', Request::segment(2))
+
+@section('title', 'Our Trades')
 
 @section('breadcrumb')
-<button type="button" class="btn btn-default btn-sm backlink"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back </button>
-<a href="{{ route('our-trades.index') }}" class="btn btn-default btn-sm backlink"><i class="fa fa-list" aria-hidden="true"></i> Show List </a>
+    <a href="{{ route('our-trades.index') }}" class="nbms-btn-secondary btn-sm">
+        <i class="fa fa-list"></i> List
+    </a>
 @endsection
 
 @section('content')
-<form class="form-horizontal" role="form" action="{{ route('our-trades.store') }}" method="post" enctype="multipart/form-data">
-  {{ csrf_field() }}     
-  <div class="col-md-9">
-    <!-- Input Fields -->
-    <div class="panel">
-      <div class="panel-heading">
-        <span class="panel-title">New Trade</span>
-      </div>
-      <div class="panel-body"> 
-                    
-        <div class="form-group">
-          <label for="inputStandard" class="col-lg-2 control-label">Title</label>
-          <div class="col-lg-9">
-            <div class="bs-component">
-              <input type="text" id="title" name="title" class="form-control" placeholder="" />
-              <input type="hidden" id="uri" name="uri" class="form-control" placeholder="" />
+
+    <form class="form-horizontal trades-form" role="form" action="{{ route('our-trades.store') }}" method="post"
+        enctype="multipart/form-data">
+
+        {{ csrf_field() }}
+
+        <div class="trades-page">
+
+            {{-- Page Header --}}
+            <div class="trades-header">
+
+                <div>
+                    <h2>
+                        <i class="fa fa-briefcase"></i>
+                        New Trade
+                    </h2>
+
+                    <p>
+                        Add a new trade and its related information
+                    </p>
+                </div>
+
             </div>
-          </div>
+
+
+            <div class="row">
+
+                {{-- Main Content --}}
+                <div class="col-md-9">
+
+                    <div class="panel trades-form-panel">
+
+                        <div class="panel-heading trades-form-heading">
+                            <span class="panel-title">
+                                <i class="fa fa-pencil"></i>
+                                Trade Information
+                            </span>
+                        </div>
+
+                        <div class="panel-body">
+
+
+                            {{-- Title --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Title
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" id="title" name="title" class="form-control"
+                                        placeholder="Enter trade title" />
+
+                                    <input type="hidden" id="uri" name="uri" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Sub Title --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Sub Title
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="sub_title" class="form-control"
+                                        placeholder="Enter sub title" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Category --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Category
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <select name="category_id" class="form-control">
+
+                                        <option value="0">
+                                            Select Category
+                                        </option>
+
+                                        @if ($category)
+
+                                            @foreach ($category as $row)
+                                                <option value="{{ $row->id }}">
+                                                    {{ $row->category }}
+                                                </option>
+                                            @endforeach
+
+                                        @endif
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Brief --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Brief
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <textarea class="form-control" name="brief" rows="3"></textarea>
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- UID --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    UID
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="content" class="form-control" placeholder="Enter UID" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Duration --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Duration of course
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="client_name" class="form-control" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Training Hours --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Total training hours
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="country" class="form-control" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Qualification --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Minimum qualification of the participant
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="service" class="form-control" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Target Group --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Target group
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="year" class="form-control" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Medium --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Medium of instruction
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="meta_keyword" class="form-control" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Method --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Method
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="meta_description" class="form-control" />
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Group Structure --}}
+                            <div class="form-group">
+
+                                <label class="col-lg-2 control-label">
+                                    Group structure
+                                </label>
+
+                                <div class="col-lg-9">
+
+                                    <input type="text" name="external_link" class="form-control" />
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {{-- Sidebar --}}
+                <div class="col-md-3">
+
+                    <div class="admin-form trades-sidebar">
+
+
+                        {{-- Publish --}}
+                        <div class="sid_ mb10 trades-card">
+
+                            <div class="trades-card-header">
+
+                                <span>
+                                    <i class="fa fa-check-circle"></i>
+                                    Status
+                                </span>
+
+                                <strong>
+                                    Active
+                                </strong>
+
+                            </div>
+
+                            <div class="trades-card-body">
+
+                                <input type="submit" class="btn btn-primary btn-sm trades-publish-btn"
+                                    value="Publish" />
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- Ordering --}}
+                        <div class="sid_ mb10 trades-card">
+
+                            <div class="trades-card-header">
+                                <i class="fa fa-sort-numeric-asc"></i>
+                                Ordering
+                            </div>
+
+                            <div class="trades-card-body">
+
+                                <input type="number" name="ordering" class="form-control" placeholder="Ordering"
+                                    value="{{ $ordering }}" />
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- Icon --}}
+                        <div class="sid_ mb10 trades-card">
+
+                            <div class="trades-card-header">
+                                <i class="fa fa-star"></i>
+                                Icon
+                            </div>
+
+                            <div class="trades-card-body">
+
+                                <input type="file" name="icon" />
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- Thumbnail --}}
+                        <div class="sid_ mb10 trades-card">
+
+                            <div class="trades-card-header">
+                                <i class="fa fa-picture-o"></i>
+                                Thumbnail
+                            </div>
+
+                            <div class="trades-card-body">
+
+                                <input type="file" name="thumbnail" />
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- Page Thumbnail --}}
+                        <div class="sid_ mb10 trades-card">
+
+                            <div class="trades-card-header">
+                                <i class="fa fa-image"></i>
+                                Page Thumbnail
+                            </div>
+
+                            <div class="trades-card-body">
+
+                                <input type="file" name="page_thumbnail" />
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- Banner --}}
+                        <div class="sid_ mb10 trades-card">
+
+                            <div class="trades-card-header">
+                                <i class="fa fa-picture-o"></i>
+                                Banner
+                            </div>
+
+                            <div class="trades-card-body">
+
+                                <input type="file" name="banner" />
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="form-group">
-          <label for="inputStandard" class="col-lg-2 control-label">Sub Title</label>
-          <div class="col-lg-9">
-            <div class="bs-component">
-              <input type="text" id="" name="sub_title" class="form-control" placeholder="" />
-            </div>
-          </div>
-        </div>      
+    </form>
 
-        <div class="form-group">
-              <label class="col-lg-2 control-label" for="textArea3"> Category  </label>
-              <div class="col-lg-9">
-              <div class="bs-component">    
-              <select name="category_id" class="form-control">
-                <option value="0"> Select Category </option>
-                  @if($category)
-                  @foreach($category as $row)
-                  <option value="{{$row->id}}"> {{$row->category}}</option>
-                  @endforeach  
-                  @endif 
-                </select>
-                </div>
-              </div>
-        </div>              
+@endsection
 
-            <div class="form-group">
-              <label class="col-lg-2 control-label" for="textArea3"> Brief </label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                  <textarea class="form-control" id="" name="brief" rows="3"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-2 control-label">UID</label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                   <input type="text" id="" name="content" class="form-control" placeholder="" />                
-                </div>
-              </div>
-            </div>
 
-            <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Duration of course</label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                  <input type="text" id="" name="client_name" class="form-control" placeholder="" />
-                </div>
-              </div>
-            </div>
+@section('scripts')
 
-            <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Total training hours:</label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                  <input type="text" id="" name="country" class="form-control" placeholder="" />
-                </div>
-              </div>
-            </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
 
-            <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">	Minimum qualification of the participant:</label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                  <input type="text" id="" name="service" class="form-control" placeholder="" />
-                </div>
-              </div>
-            </div>
+            $('#title').on('keyup', function() {
 
-            <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">	Target group</label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                  <input type="text" id="" name="year" class="form-control" placeholder="" />
-                </div>
-              </div>
-            </div>
+                var title;
 
-            <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Medium of instruction</label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                  <input type="text" id="" name="meta_keyword" class="form-control" placeholder="" />
-                </div>
-              </div>
-            </div>
+                title = $('#title').val();
 
-            <div class="form-group">
-              <label class="col-lg-2 control-label" for="textArea3"> Method </label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                   <input type="text" id="" name="meta_description" class="form-control" >
-                  
-                </div>
-              </div>
-            </div>                    
+                title = title.replace(/[^a-zA-Z0-9 ]+/g, "");
 
-            <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label"> Group structure</label>
-              <div class="col-lg-9">
-                <div class="bs-component">
-                  <input type="text" id="" name="external_link" class="form-control" >
-                </div>
-              </div>         
-            </div> 
+                title = title.replace(/\s+/g, "-");
 
-          </div>
-        </div>          
-      </div>
+                $('#uri').val(title);
 
-      <div class="col-md-3">
-        <div class="admin-form">
-          <div class="sid_ mb10">                   
-            <div class="hd_show_con">
-              <div class="publice_edi">
-                Status: <a href="avoid:javascript;" data-toggle="collapse" data-target="#publish_1">Active</a>
-              </div>                    
-            </div>
-            <footer>                        
-              <div id="publishing-action">
-                <input type="submit" class="btn btn-primary btn-sm" value="Publish" />
-              </div>
-              <div class="clearfix"></div>
-            </footer>
-            <div class="clearfix"></div>
-          </div>
+            });
 
-          <div class="sid_ mb10">
-            <label class="field text">
-              <input type="number" id="" name="ordering" class="form-control" placeholder="Ordering" value="{{ $ordering }}" />   
-            </label>
-          </div>
+        });
 
-          <div class="sid_ mb10">
-            <h4> Icon </h4>
-            <div class="hd_show_con">
-              <div id="xedit-demo">
-               <input type="file" name="icon" />
-             </div>
-           </div>
-         </div>
 
-         <div class="sid_ mb10">
-            <h4> Thumbnail </h4>
-            <div class="hd_show_con">
-              <div id="xedit-demo">
-               <input type="file" name="thumbnail" />
-             </div>
-           </div>
-         </div>
+        $('.backlink').click(function() {
 
-         <div class="sid_ mb10">
-            <h4> Page Thumbnail </h4>
-            <div class="hd_show_con">
-              <div id="xedit-demo">
-               <input type="file" name="page_thumbnail" />
-             </div>
-           </div>
-         </div>
+            var url = '<?= url()->previous() ?>';
 
-         <div class="sid_ mb10">
-            <h4> Banner </h4>
-            <div class="hd_show_con">
-              <div id="xedit-demo">
-               <input type="file" name="banner" />
-             </div>
-           </div>
-         </div>
+            window.location = url;
 
-       </div>     
-     </div>
-   </form>
-   @endsection
-   @section('scripts')
-   <script type="text/javascript">
-    $(document).ready(function(){
-      $('#title').on('keyup',function(){
-        var title;
-        title = $('#title').val();
-        title=title.replace(/[^a-zA-Z0-9 ]+/g,"");
-        title=title.replace(/\s+/g, "-");
-        $('#uri').val(title);
-      });
-    });
+        });
+    </script>
 
-// Go back link
-$('.backlink').click(function(){
-  var url = '<?=url()->previous(); ?>';
-  window.location=url;
-});
-
-</script>
 @endsection
