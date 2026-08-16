@@ -1,0 +1,28 @@
+/* =========================================
+   ADMIN CUSTOM STYLES
+   ========================================= */
+
+/* Sidebar */
+#sidebar_left,
+#sidebar_left .sidebar-left-content {
+    background: #0f4c81 !important;
+}
+
+#sidebar_left .sidebar-menu > li > a {
+    color: #fff !important;
+    background: transparent !important;
+}
+
+#sidebar_left .sidebar-menu > li > a:hover,
+#sidebar_left .sidebar-menu > li.active > a {
+    background: #083b66 !important;
+    color: #fff !important;
+}
+
+#sidebar_left .sidebar-menu > li > a span {
+    color: #fff !important;
+}
+
+#sidebar_left .sidebar-label {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
