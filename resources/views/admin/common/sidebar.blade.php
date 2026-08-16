@@ -8,9 +8,9 @@
             <!-- Sidebar Widget - Search (hidden) -->
             <div class="sidebar-widget search-widget hidden">
                 <div class="input-group">
-              <span class="input-group-addon">
-                <i class="fa fa-search"></i>
-              </span>
+                    <span class="input-group-addon">
+                        <i class="fa fa-search"></i>
+                    </span>
                     <input type="text" id="sidebar-search" class="form-control" placeholder="Search...">
                 </div>
             </div>
@@ -25,8 +25,8 @@
                     <span class="sidebar-title">Dashboard</span>
                 </a>
             </li>
-           
-            @if(checkAuth(1))
+
+            @if (checkAuth(1))
                 <li>
                     <a href="{{ url('admin/banner') }}">
                         <span class="fa fa-file-image-o text-info" aria-hidden="true"></span>
@@ -34,7 +34,7 @@
                     </a>
                 </li>
             @endif
-            @if(checkAuth(2))
+            @if (checkAuth(2))
                 <li>
                     <a class="accordion-toggle" href="{{ url('admin/dashboard') }}">
                         <span class="fa fa-files-o text-info"></span>
@@ -42,39 +42,39 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="nav sub-nav">
-                      
-                            <li>
-                                <a href="{{ url('type/posttype') }}">
-                                    <span class="fa fa-arrows"></span>
-                                    Post Types
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('admin/postcategory') }}">
-                                    <span class="fa fa-arrows"></span>
-                                    Post Categories
-                                </a>
-                            </li>
-                       
-                    <!-- Post Type List -->
-                        @if($posttype)
-                         @foreach($posttype as $row)
-                          <li>
-                         @if(has_posts($row->id))                
-                          <a href="{{ url('admin/'.$row->uri)}}">
-                            @else
-                            <a href="{{ url('type/posttype/'.$row->id.'/edit') }}">
-                              @endif
-                            <span class="fa fa fa-arrows-h"></span>
-                              {{$row->post_type}}                 
-                            </a>                
-                          </li>
-                          @endforeach 
-                          @endif  
+
+                        <li>
+                            <a href="{{ url('type/posttype') }}">
+                                <span class="fa fa-arrows"></span>
+                                Post Types
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/postcategory') }}">
+                                <span class="fa fa-arrows"></span>
+                                Post Categories
+                            </a>
+                        </li>
+
+                        <!-- Post Type List -->
+                        @if ($posttype)
+                            @foreach ($posttype as $row)
+                                <li>
+                                    @if (has_posts($row->id))
+                                        <a href="{{ url('admin/' . $row->uri) }}">
+                                        @else
+                                            <a href="{{ url('type/posttype/' . $row->id . '/edit') }}">
+                                    @endif
+                                    <span class="fa fa fa-arrows-h"></span>
+                                    {{ $row->post_type }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(3))
+            @if (checkAuth(3))
                 <li class="">
                     <a href="{{ url('admin/dashboard') }}" class="accordion-toggle">
                         <span class="fa fa-files-o text-info" aria-hidden="true"></span>
@@ -82,14 +82,14 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <?php /*?>
-              <li>
-                <a href="{{ url('admin/portfoliocategory') }}">
-                  <span class="fa fa fa-arrows-h"></span>
-                  Portfolio Category
-                </a>
-              </li>
-              <?php */?>
+                        <?php /*?> ?>
+                        <li>
+                            <a href="{{ url('admin/portfoliocategory') }}">
+                                <span class="fa fa fa-arrows-h"></span>
+                                Portfolio Category
+                            </a>
+                        </li>
+                        <?php */?>
                         <li>
                             <a href="{{ url('admin/our-trades') }}">
                                 <span class="fa fa fa-arrows-h"></span>
@@ -99,8 +99,8 @@
                     </ul>
                 </li>
             @endif
-            
-            @if(checkAuth(15))
+
+            @if (checkAuth(15))
                 <li>
                     <a href="{{ url('admin/proposal-request') }}">
                         <span class="fa fa-file-image-o text-info" aria-hidden="true"></span>
@@ -115,11 +115,11 @@
                 </li>
             @endif
 
-            @if(checkAuth(4))
+            @if (checkAuth(4))
                 <li class="">
                     <a href="{{ url('admin/dashboard') }}" class="accordion-toggle">
                         <span class="fa fa-file-image-o text-info"></span>
-                        <span class="sidebar-title">  Manage Photo Gallery </span>
+                        <span class="sidebar-title"> Manage Photo Gallery </span>
                         <span class="caret"></span>
                     </a>
                     <ul class="nav sub-nav">
@@ -138,11 +138,11 @@
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(5))
+            @if (checkAuth(5))
                 <li class="">
                     <a href="{{ url('admin/dashboard') }}" class="accordion-toggle">
                         <span class="fa fa-file-video-o text-info"></span>
-                        <span class="sidebar-title">  Manage Video Gallery </span>
+                        <span class="sidebar-title"> Manage Video Gallery </span>
                         <span class="caret"></span>
                     </a>
                     <ul class="nav sub-nav">
@@ -161,7 +161,7 @@
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(6))
+            @if (checkAuth(6))
                 <li class="">
                     <a href="{{ url('admin/circular') }}" class="accordion-toggle">
                         <span class="fa fa-files-o text-info"></span>
@@ -175,10 +175,10 @@
                                 Circular Type
                             </a>
                         </li>
-                        @if($circulartype)
-                            @foreach($circulartype as $circular)
+                        @if ($circulartype)
+                            @foreach ($circulartype as $circular)
                                 <li>
-                                    <a href="{{ route('admin.circular.index',$circular->id) }}">
+                                    <a href="{{ route('admin.circular.index', $circular->id) }}">
                                         <span class="fa fa fa-arrows-h"></span>
                                         {{ ucfirst($circular->circular_type) }}
                                     </a>
@@ -188,11 +188,11 @@
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(7))
+            @if (checkAuth(7))
                 <li class="">
                     <a href="#" class="accordion-toggle">
                         <span class="fa fa-files-o text-info"></span>
-                        <span class="sidebar-title">  Manage Tender </span>
+                        <span class="sidebar-title"> Manage Tender </span>
                         <span class="caret"></span>
                     </a>
                     <ul class="nav sub-nav">
@@ -217,7 +217,7 @@
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(8))
+            @if (checkAuth(8))
                 <li class="">
                     <a href="{{ url('admin/user') }}" class="accordion-toggle">
                         <span class="glyphicon glyphicon-user text-info"></span>
@@ -246,7 +246,7 @@
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(9))
+            @if (checkAuth(9))
                 <li class="">
                     <a class="accordion-toggle">
                         <span class="glyphicon glyphicon-user text-info"></span>
@@ -275,15 +275,15 @@
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(10))
+            @if (checkAuth(10))
                 <li>
                     <a href="{{ url('newsletter/subcribers') }}">
                         <span class="fa fa-users text-info" aria-hidden="true"></span>
-                        <span class="sidebar-title"> Newsletter Subcribers  </span>
+                        <span class="sidebar-title"> Newsletter Subcribers </span>
                     </a>
                 </li>
             @endif
-            @if(checkAuth(11))
+            @if (checkAuth(11))
                 <li>
                     <a href="{{ route('dwninfo.index') }}">
                         <span class="fa fa-download text-info"></span>
@@ -291,7 +291,7 @@
                     </a>
                 </li>
             @endif
-            @if(checkAuth(13))
+            @if (checkAuth(13))
                 <li class="">
                     <a class="accordion-toggle">
                         <span class="glyphicon glyphicon-user text-info"></span>
@@ -320,7 +320,7 @@
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(14))
+            @if (checkAuth(14))
                 <li class="">
                     <a class="accordion-toggle">
                         <span class="glyphicon glyphicon-user text-info"></span>
@@ -349,7 +349,7 @@
                     </ul>
                 </li>
             @endif
-            @if(checkAuth(12))
+            @if (checkAuth(12))
                 <li>
                     <a href="{{ route('settings.index') }}">
                         <span class="fa fa-cogs text-info"></span>
