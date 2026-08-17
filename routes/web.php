@@ -12,14 +12,14 @@
 Route::get('/', 'FrontendControllers\FrontpageController@index');
 Route::get('/proposal-request/{uri?}', 'FrontendControllers\FrontpageController@proposal_request')->name('proposal-request');
 Route::post('/proposal-request/{uri?}', 'FrontendControllers\FrontpageController@proposal_request')->name('proposal-request');
-Route::post('contact-form','FrontendControllers\FrontpageController@contact_form')->name('contact-form');
+Route::post('contact-form', 'FrontendControllers\FrontpageController@contact_form')->name('contact-form');
 
 
 //Inquiry routes
-Route::post('trip-inquiry','FrontendControllers\FrontpageController@post_inquiry')->name('post-inquiry');
+Route::post('trip-inquiry', 'FrontendControllers\FrontpageController@post_inquiry')->name('post-inquiry');
 //
-Route::post('trip-booking','FrontendControllers\FrontpageController@random_tripbooking')->name('random-trip');
-Route::post('vehicle-booking','FrontendControllers\FrontpageController@vehicle_booking')->name('vehicles-booking');
+Route::post('trip-booking', 'FrontendControllers\FrontpageController@random_tripbooking')->name('random-trip');
+Route::post('vehicle-booking', 'FrontendControllers\FrontpageController@vehicle_booking')->name('vehicles-booking');
 
 
 /* Authentication Routes... */
@@ -33,7 +33,9 @@ Route::get('banners', 'FrontendControllers\FrontpageController@banners');
 
 // Normal Pages
 Route::get('{uri}.html', 'FrontendControllers\FrontpageController@pagedetail')->name('page.pagedetail');
-Route::get('page/{uri}.html', 'FrontendControllers\FrontpageController@posttype')->name('page.posttype');
+Route::get('page/{uri}', 'FrontendControllers\FrontpageController@posttype')->name('page.posttype');
+
+
 Route::get('service-category/{uri}.html', 'FrontendControllers\FrontpageController@servicetype')->name('page.servicetype');
 Route::get('trades/detail/{uri}', 'FrontendControllers\FrontpageController@portfolio')->name('page.portfolio');
 Route::post('/service/serviceorder/{uri}', 'FrontendControllers\FrontpageController@serviceorder')->where('uri', '[0-9A-Za-z]+');
@@ -120,9 +122,9 @@ Route::middleware(['auth'])->group(function () {
         'admin/taxliability_eligibility' => 'AdminControllers\TaxLiability\TaxliabilityEligibilityController',
         'admin/taxliability_holderlist' => 'AdminControllers\TaxLiability\TaxliabilityHolderlistController',
     ]);
-    
-     Route::delete('banner_delete/{id}', 'AdminControllers\Banners\BannerController@banner_delete');
-     
+
+    Route::delete('banner_delete/{id}', 'AdminControllers\Banners\BannerController@banner_delete');
+
     //rightshares
     Route::get('admin/rightshare_company/{id}/destroy', 'AdminControllers\Rightshare\RightshareCompanyController@destroy');
     Route::get('admin/rightshare_eligibility/{id}/destroy', 'AdminControllers\Rightshare\RightshareEligibilityController@destroy');
@@ -189,7 +191,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('newsletter/subcribers', 'FrontendControllers\NewsletterSignupController@index')->name('subcribers');
     Route::delete('newsletter/subcribers/{id}', 'FrontendControllers\NewsletterSignupController@destroy');
 
-// Associated Post
+    // Associated Post
     Route::get('admin/associated/{type}/{id}', 'AdminControllers\Posts\AssociatedPostController@associated_post')->name('associated.post.index');
     Route::get('admin/associated/{type}/{id}/create', 'AdminControllers\Posts\AssociatedPostController@create')->name('admin.associated.create');
     Route::post('admin/associated/{type}/{id}/store', 'AdminControllers\Posts\AssociatedPostController@store')->name('admin.associated.store');
@@ -197,7 +199,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/associated/{type}/{id}/edit', 'AdminControllers\Posts\AssociatedPostController@edit')->name('admin.associated.edit');
     Route::put('admin/associated/{type}/{id}', 'AdminControllers\Posts\AssociatedPostController@update')->name('admin.associated.update');
 
-// Associated Portfolios
+    // Associated Portfolios
     Route::get('admin/associates/{type}/{id}', 'AdminControllers\Portfolios\AssociatedPortfolioController@associated_post')->name('associates.post.index');
     Route::get('admin/associates/{type}/{id}/create', 'AdminControllers\Portfolios\AssociatedPortfolioController@create')->name('admin.associates.create');
     Route::post('admin/associates/{type}/{id}/store', 'AdminControllers\Portfolios\AssociatedPortfolioController@store')->name('admin.associates.store');
@@ -227,5 +229,4 @@ Route::middleware(['auth'])->group(function () {
         $circulartype = App\Models\Circulars\CircularTypeModel::orderBy('ordering', 'asc')->get();
         $view->with('circulartype', $circulartype);
     });
-
 });

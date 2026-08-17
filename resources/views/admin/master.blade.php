@@ -91,12 +91,22 @@
     <!-- Start: Main -->
     <div id="main">
 
+        <style>
+            .navbar-brand .admin-logo {
+                width: 100px;
+                height: 40px;
+                object-fit: contain;
+            }
+        </style>
         <!-- Start: Header -->
         <header class="navbar navbar-fixed-top">
             <div class="navbar-branding">
                 <a class="navbar-brand" href="{{ url('/') }}" target="_blank">
-                    Admin Panel
+                    <img src="{{ asset('themes-assets/assets/img/logo.png') }}"
+                        alt="" class="admin-logo"
+                    >
                 </a>
+
                 <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
             </div>
 
