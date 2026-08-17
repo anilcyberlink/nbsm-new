@@ -8,12 +8,12 @@
     <meta name="google-site-verification" content="" />
     <meta name="keywords" content="@yield('meta_keyword')" />
     <meta name="description" content="@yield('meta_description')" />
+
     <meta property="og:type" content="website" />
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:site_name" content="{{ $setting->site_name }}" />
     <meta property="og:description" content="@yield('meta_description')" />
-
     @if (trim($__env->yieldContent('thumbnail')))
         <meta property="og:image" content="{{ asset(env('PUBLIC_PATH') . 'uploads/original/') }}/@yield('thumbnail')" />
     @else
@@ -48,11 +48,11 @@
                 <a href="nepal.php">Doing Business in Nepal</a>
                 <span class="divider"></span>
                 <a href="careers.php">Careers</a>
-                <span class="divider"></span>
+                {{-- <span class="divider"></span>
                 <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
                     <circle cx="11" cy="11" r="7" />
                     <path d="M21 21l-4.35-4.35" />
-                </svg>
+                </svg> --}}
             </div>
         </div>
     </div>
@@ -66,15 +66,12 @@
             </a>
             <div class="nav-group">
                 <nav>
-                    <a class="nav-link featured" href="insights.php">Insights</a>
-                    <a class="nav-link" href="about.php">Who We Are</a>
-                    <a class="nav-link" href="services.php">Services</a>
-                    <a class="nav-link" href="industries.php">Industries</a>
-                    <a class="nav-link" href="global.php">Global</a>
-                    <a class="nav-link" href="contact.php">Contact</a>
+                    @foreach ($navigations as $row)
+                        <a class="nav-link featured" href="{{ url('page/' . posttype_url($row->uri)) }}">{{ $row->post_type }}</a>
+                    @endforeach
                 </nav>
                 <div class="header-cta">
-                    <a href="contact.php" class="btn btn-cyan">Request a Proposal
+                    <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-cyan">Request a Proposal
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M13 6l6 6-6 6" />
                         </svg></a>
