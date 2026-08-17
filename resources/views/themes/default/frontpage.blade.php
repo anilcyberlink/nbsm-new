@@ -1,385 +1,663 @@
 @extends('themes.default.common.master')
 @section('content')
-     <!-- banner -->
- @if($banner)
-<section class="uk-cover-container uk-position-relative uk-flex uk-flex-middle uk-background-norepeat uk-background-cover uk-background-top-center" uk-parallax="bgx: 80, 80 ;bgy: -50, -200"   style="background:url(images/banner-1.jpg);">
-   <div class="uk-position-relative" id="ytbg3" data-ytbg-fade-in="true" data-ytbg-mute-button="true" data-youtube="{{$banner->video}}"></div>
-   <div class="uk-overlay-primary  uk-position-cover "></div>
-   <div class="uk-home-banner uk-width-1-1 uk-position-z-index">
-      <div class="uk-container uk-container-large uk-position-relative  uk-flex-middle uk-flex" uk-height-viewport="expand: true; min-height: 600;">
-         <div class="uk-width-1-2@l uk-width-1-1" uk-scrollspy="cls: uk-animation-slide-top-small; target:h1, p, a;  delay: 100; repeat: false;">
-            <h1 class="uk-text-bold text-white uk-margin-remove">{{$banner->title}}</h1>
-            <div class="uk-home-list-description">
-               <p class="text-white">
-                   {{$banner->caption}}
-                   </p>
-            </div>
-            <a href="{{$banner->link}}" class="uk-button uk-button-large uk-button-white">Learn More</a>
-         </div>
-
-         <div class="uk-width-1-2@s uk-visible@m">
-         <div class="">
-         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 180 150"  xml:space="preserve">
-            <style type="text/css">
-               .one{fill:var(--bg-white); opacity: .4;}
-               .two{fill:var(--bg-primary); opacity: .8;}
-               .three{fill:var(--bg-secondary); opacity: .8;}
-               .four{fill:var(--bg-primary); opacity: .8;}
-            </style>
-            <g>
-               <polygon class="one" points="4.14,144 151,144 151,139 17.86,139 167,13.69 167,135.38 167,137 172,137 172,2.96 	"/>
-               <rect x="167" y="139" class="two" width="5" height="5"/>
-               <rect x="160" y="139" class="three" width="5" height="5"/>
-               <rect x="153" y="139" class="four" width="5" height="5"/>
-            </g>
-         </svg>
-      </div>
-
-</div>
-         </div>
-      </div>
-   </div>
-   </div>
-</section>
-@endif
-<!-- end banner --> 
-
-    <!-- section -->
-    <section class="uk-section bg-white uk-position-relative ">
-        <div class="uk-container uk-container-large">
-            <!--  -->
-            @foreach($publication as $value)
-                @if($loop->iteration %2 != 0)
-            <div class="uk-grid-large    uk-transition-toggle uk-list-home uk-flex-middle" uk-grid uk-scrollspy="cls: uk-animation-slide-left-small; target:div, p;  delay: 100; repeat: false;">
-                <div class="uk-width-1-2@m  uk-flex-last uk-flex-first@m">
-                    <div class="uk-padding-small uk-padding-remove-left">
-                        <h4 class="uk-text-uppercase   uk-margin-small-bottom text-secondary">Publication <span class="uk-margin-small-right text-secondary" uk-icon="icon:minus; ratio: 2;"></span></h4>
-                        <div class="uk-margin-small-bottom">
-                            <h1 class="uk-h2 text-black">{{$value->post_title}}</h1>
-                        </div>
-                        <div class="uk-home-list-description">
-                            <p>{!! $value->post_excerpt !!}</p>
-                        </div>
-                        <a href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}" class="uk-button uk-button-primary-outline">Read More</a>
-                    </div>
-                </div>
-                <div class="uk-width-1-2@m  uk-flex-first uk-flex-last@m">
-                    <div class="uk-media-350 uk-position-relative">
-                        <a href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}">
-                             @if($value->page_thumbnail != null)
-                                      <img src="{{asset('uploads/original/' . $value->page_thumbnail)}}" class="uk-transition-scale-down uk-transition-opaque">
-                                        @else
-                                        <img src="{{asset('images/default.png')}}">
-                                        @endif
-                           
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!--  -->
-            @else
-            <!--  -->
-            <div class="uk-grid-large  uk-transition-toggle uk-list-home  uk-flex-middle" uk-grid uk-scrollspy="cls: uk-animation-slide-left-small; target:div, p;  delay: 100; repeat: false;">
-                <div class="uk-width-1-2@m">
-                    <div class="uk-media-350">
-                        <a href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}">
-                             @if($value->page_thumbnail != null)
-                                      <img src="{{asset('uploads/original/' . $value->page_thumbnail)}}" class="uk-transition-scale-down uk-transition-opaque">
-                                        @else
-                                        <img src="{{asset('images/default.png')}}">
-                                        @endif
-                        </a>
-                    </div>
-                </div>
-                <div class="uk-width-1-2@m">
-                    <div class="uk-padding-small uk-padding-remove-right">
-                        <h4 class="uk-text-uppercase  uk-margin-small-bottom text-secondary">Publication <span class="uk-margin-small-right text-secondary" uk-icon="icon:minus; ratio: 2;"></span></h4>
-                        <div class="uk-margin-small-bottom">
-                            <h1 class="uk-h2 text-black">{{$value->post_title}}</h1>
-                        </div>
-                        <div class="uk-home-list-description">
-                            <p>{!! $value->post_excerpt !!}</p>
-                        </div>
-                        <a href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}" class="uk-button uk-button-primary-outline">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <!--  -->
-            @endif
-        @endforeach
-          
-           </div>
-        </section>
-        <!-- end section -->
-        
-        
-        <!-- section -->
-        <section class="uk-section-small   bg-primary uk-position-relative ">
-           <div class="uk-container uk-container-large">
-            <!-- counter -->
-            <div class="uk-child-width-1-3@s uk-child-width-1-2  uk- uk-text-center    uk-grid-small   text-white  " id="counter" uk-grid uk-scrollspy="cls: uk-animation-slide-left-small; target:div, div;  delay: 20; repeat: false;">
-               @if($setting->field1)
-                <div>
-                    <div class="uk-padding">
-                       <h2 class="uk-h1 text-white uk-text-bold uk-margin-remove"> <span class="count" data-count="{{$setting->field1}}"></span>+</h2>
-                        <p class="uk-margin-remove uk-text-bold">{{$setting->website2}}</p>
-                    </div>
-                </div>
-                @endif
-                 @if($setting->field2)
-                <div>
-                    <div class="uk-padding">
-                        <h2 class="uk-h1 text-white uk-text-bold uk-margin-remove"> <span class="count" data-count="{{$setting->field2}}"></span>+</h2>
-                        <p class="uk-margin-remove uk-text-bold">{{$setting->location_link}}</p>
-                    </div>
-                </div>
-                 @endif
-                 @if($setting->field3)
-                <div>
-                    <div class="uk-padding">
-                       <h2 class="uk-h1 text-white uk-text-bold uk-margin-remove"> <span class="count" data-count="{{$setting->field3}}"></span></h2>
-                        <p class="uk-margin-remove uk-text-bold">{{$setting->address2}}</p>
-                    </div>
-                </div>
-                 @endif
-                 @if($setting->field4)
-                <div class="uk-padding">
-                    <h2 class="uk-h1 text-white uk-text-bold uk-margin-remove"> <span class="count" data-count="{{$setting->field4}}"></span></h2>
-                    <p class="uk-margin-remove uk-text-bold">{{$setting->location2}}</p>
-                </div>
-                 @endif
-            </div>
-            <!-- counter end -->
-        </div>
-    </section>
-    <!-- end section -->
-    <!-- section -->
-    <section class="uk-section bg-light uk-position-relative ">
-        <div class="uk-container uk-container-large">
-            <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-medium">
-                <div>
-                    <h1 class="uk-h2 text-black uk-text-bold">What we do</h1>
-                </div>
-                <div>
-                    <a class="uk-button-text" href="{{ url('page/' . posttype_url($service->uri)) }}">View All</a>
-                </div>
-            </div>
-            <ul class="uk-grid-medium uk-child-width-1-4@l uk-child-width-1-2@m uk-child-width-1-2@s uk-margin-medium-bottom" uk-height-match="target:.uk-card-default" uk-grid uk-scrollspy="cls: uk-animation-slide-top-small; target:div, h1, p, a;  delay: 20; repeat: false;">
-                <!--  -->
-                @foreach ($navigations as $row)
-                    @if ($loop->iteration == 2)
-                    @if (has_posts($row->id))
-                        @foreach (has_posts($row->id) as $_row)
-                <li>
-                    <div>
-                        <div class="bg-white  uk-overflow-hidden uk-box-shadow-medium   uk-transition-toggle">
-                            <div class="uk-media-250 uk-position-relative">
-                                <a href="{{url(geturl($_row->uri))}}">
-                                     @if($_row->page_thumbnail != null)
-                                      <img src="{{asset('uploads/original/' . $_row->page_thumbnail)}}"  class="uk-transition-scale-down uk-transition-opaque">
-                                        @else
-                                        <img src="{{asset('images/default.png')}}"  class="uk-transition-scale-down uk-transition-opaque">
-                                        @endif
-                                    
-                                </a>
-                            </div>
-                            <div class="uk-card uk-card-default  uk-card-body">
-                                <h1 class="uk-h4 uk-text-bold uk-margin-remove">
-                                    <a href="{{url(geturl($_row->uri))}}">{{$_row->post_title}}</a>
-                                </h1>
-                                  <div class="uk-text-small uk-margin-small">
-                                    {!! $_row->post_excerpt !!}
-                                    <a href="{{url(geturl($_row->uri))}}">Read More
-                                        <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                        @endforeach
-                    @endif
-                    @endif
-                @endforeach
-            </ul>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+        <div class="hero-scene" aria-hidden="true">
+            <img class="hero-photo" src="assets/img/hero-kathmandu.jpg" alt="" />
+            <div class="hero-scrim"></div>
+            <div class="ascent-strip" id="ascent-strip"></div>
         </div>
 
-    </section>
-    <!-- end section -->
-    <!-- section -->
-    <section class="bg-primary-dark   uk-position-relative uk-overflow-hidden">
-        <div class="uk-career-image">
-            <div class="uk-concept uk-visible@m">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 190 150"  xml:space="preserve">
-            <style type="text/css">
-                .st0{fill:var(--bg-primary); opacity: 0.8;}
-                .st1{fill:var(--bg-primary); opacity: 0.8;}
-                .st2{fill:var(--bg-secondary); opacity: 0.8;}
-                .st3{fill:var(--bg-primary-dark); opacity: 0.8;}
-            </style>
-                    <g>
-                        <polygon class="st0" points="4.14,144 151,144 151,139 17.86,139 167,13.69 167,135.38 167,137 172,137 172,2.96 	"/>
-                        <rect x="167" y="139" class="st1" width="5" height="5"/>
-                        <rect x="160" y="139" class="st2" width="5" height="5"/>
-                        <rect x="153" y="139" class="st3" width="5" height="5"/>
-                    </g>
-         </svg>
-            </div>
-            <img src="{{asset('uploads/original/' . $career->banner)}}" alt="">
-        </div>
-        <div class="uk-container uk-container-large">
-            <div class="uk-grid-large  uk-flex-middle" uk-grid uk-scrollspy="cls: uk-animation-slide-top-small; target:div, h1, p, a;  delay: 20; repeat: false;">
-                <div class="uk-width-1-2@m uk-width-1-1@s">
-                    <div class="uk-section-large">
-                        <h4 class="uk-text-uppercase  uk-text-bold  uk-margin-remove text-white">{{$career->post_title}}<span class="uk-margin-small-right text-white" uk-icon="icon:minus; ratio: 2;"></span></h4>
-                        <h1 class="uk-h2 text-white uk-margin-large uk-text-bold">{!!$career->post_excerpt!!}</h1>
-                        <a href="{{url(geturl($career->uri))}}" class="uk-button uk-button-white-outline">Discover More</a>
-                    </div>
+        <div class="wrap">
+            <div class="hero-inner">
+                <span class="eyebrow hero-eyebrow">Chartered Accountants &middot; Est. 2009 &middot; Kathmandu,
+                    Nepal</span>
+                <h1>
+                    An internationally connected professional-services firm,
+                    headquartered in Nepal.
+                </h1>
+                <p class="lead">
+                    NBSM &amp; Associates brings global standards and local expertise
+                    together &mdash; for corporate decision makers, international
+                    investors, and finance teams looking to outsource to Nepal. Member
+                    of Moore Global.
+                </p>
+                <div class="hero-actions">
+                    <a href="contact.html" class="btn btn-cyan">Talk to an expert
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                    <a href="about.html" class="btn btn-ghost">Learn about NBSM</a>
                 </div>
-                <div class="uk-width-1-2@m uk-width-1-1@s">
+                <div class="hero-tagline">
+                    Trusted Advice. <span>Global Perspective.</span> Local Expertise.
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-strip">
+            <div class="wrap">
+                <div class="stat">
+                    <div class="n">130+</div>
+                    <div class="l">Professionals</div>
+                </div>
+                <div class="stat">
+                    <div class="n">35+</div>
+                    <div class="l">Chartered Accountants</div>
+                </div>
+                <div class="stat">
+                    <div class="n">2009</div>
+                    <div class="l">Founded</div>
+                </div>
+                <div class="stat">
+                    <div class="n">116+</div>
+                    <div class="l">Countries &mdash; Moore Global network</div>
+                </div>
+                <div class="stat">
+                    <div class="n">2</div>
+                    <div class="l">Offices &mdash; Kathmandu &amp; Butwal</div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- end section -->
-    <!-- section -->
-<section class="uk-section">
-   <div class="uk-container uk-container-large">
-      <div class="uk-grid-expand uk-grid-medium uk-grid-margin-medium"  uk-grid uk-scrollspy="cls: uk-animation-slide-top-small; target:div, h1, p, a;  delay: 20; repeat: false;">
-         <div class="uk-width-1-2@l">
-            <!-- slider -->
-            <div class="uk-position-relative uk-visible-toggle " tabindex="-1" uk-slider="autoplay: true; finite: true; ">
 
-    <ul class="uk-slider-items uk-child-width-1-1 uk-position-relative">
-          @foreach($blog as $value)
-        <li>
-            <div class="  uk-margin uk-text-left uk-scrollspy-inview uk-animation-slide-bottom-medium"  style="">
-               <a class="uk-container uk-inline-clip uk-transition-toggle uk-link-toggle"  tabindex="0" href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}">
-                  <canvas width="1080" height="800"></canvas>
-                   @if($value->page_thumbnail)
-                  <img class="uk-image uk-cover" alt="" uk-cover="" data-src="{{asset('uploads/original/' . $value->page_thumbnail)}}" uk-img="">
-                  @else
-                   <img class="uk-image uk-cover" alt="" uk-cover="" data-src="{{asset('images/default.png')}}" uk-img="">
-                   @endif
-                  <div class="uk-overlay-primary  uk-overlay uk-position-cover"></div>
-                  <div class="uk-overlay uk-position-bottom-left uk-margin-remove-first-child">
-                     <h3 class="text-white uk-text-bold uk-h3 uk-margin-remove-top uk-margin-small-bottom" >        
-                      {{$value->post_title}}
-                     </h3>
-                     <!-- <p class="text-white uk-margin-small-bottom">Governor Mr. Maha Prasad Adhikari through theannual monetary policy</p> -->
-                     <a href="#" class="uk-display-block"><span class="uk-badge bg-4 uk-margin-small">{{post_parent($value->uri)->post_title}}</span></a>
-                  </div>
-               </a>
+    <!-- ============ INSIGHTS FLAGSHIP ============ -->
+    <section class="insights-flagship" id="insights">
+        <div class="wrap">
+            <div class="if-head reveal">
+                <span class="eyebrow">Our thinking</span>
+                <h2>Insights &mdash; the asset we build every day.</h2>
+                <p>
+                    NBSM&rsquo;s research and analysis on the Nepali economy, tax policy
+                    and regulation is read by the CFOs, boards and investors who rely on
+                    us most.
+                </p>
             </div>
-         </li>
-@endforeach
-          
+        </div>
 
-          
-      </ul>
-         <!-- slider nav -->
-        <!--   <div class=" uk-slidenav-container uk-position-top-right ">
-           <a class="uk-slidenav uk-slidenav uk-icon uk-slidenav-previous uk-slidenav bg-1 " href="#" uk-slidenav-previous="" uk-slider-item="previous"> </a>
-           <a class="uk-slidenav uk-slidenav uk-icon uk-slidenav-next uk-slidenav bg-1 " href="#" uk-slidenav-next="" uk-slider-item="next"> </a>
-        </div> -->
-       <!--    <a class="uk-position-center-left uk-position-xsmall uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-    <a class="uk-position-center-right uk-position-xsmall uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
- -->
- <div class="uk-position-bottom uk-margin-bottom uk-light">
-     <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
- </div>
-       
+        <div class="if-stage">
+            <div class="if-panel active" data-panel="0">
+                <div class="if-visual">
+                    <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#1CA9E1" stop-opacity="0.5" />
+                                <stop offset="100%" stop-color="#0E3F69" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="600" height="400" fill="url(#g1)" />
+                        <g stroke="#ffffff" stroke-opacity="0.18" stroke-width="1">
+                            <line x1="0" y1="80" x2="600" y2="80" />
+                            <line x1="0" y1="160" x2="600" y2="160" />
+                            <line x1="0" y1="240" x2="600" y2="240" />
+                            <line x1="0" y1="320" x2="600" y2="320" />
+                        </g>
+                        <polyline points="20,320 100,280 180,300 260,220 340,240 420,140 500,170 580,80" fill="none"
+                            stroke="#1CA9E1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="580" cy="80" r="7" fill="#ffffff" />
+                    </svg>
+                </div>
+                <div class="if-content">
+                    <span class="tag">Publication</span>
+                    <h3>Nepal Budget 2083/84 (2026/27) &mdash; Key Highlights</h3>
+                    <p>
+                        Finance Minister Dr. Swarnim Wagle presented one of the most
+                        reform-oriented budgets in recent memory, allocating a record NPR
+                        2,124 billion &mdash; an 8.2% increase over the previous year.
+                    </p>
+                    <span class="date">29 May 2026</span>
+                    <a href="insights.html#nepal-budget-2083-84" class="btn btn-primary">Read the full analysis
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+            </div>
 
-   </div>
-            <!-- slider end -->
+            <div class="if-panel" data-panel="1">
+                <div class="if-visual">
+                    <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="600" height="400" fill="#0E3F69" />
+                        <g fill="none" stroke="#1CA9E1" stroke-width="2" stroke-opacity="0.7">
+                            <circle cx="300" cy="200" r="60" />
+                            <circle cx="300" cy="200" r="110" />
+                            <circle cx="300" cy="200" r="160" />
+                        </g>
+                        <circle cx="300" cy="200" r="10" fill="#ffffff" />
+                        <path d="M300,200 L420,120" stroke="#ffffff" stroke-width="2" stroke-opacity="0.5" />
+                        <path d="M300,200 L180,270" stroke="#ffffff" stroke-width="2" stroke-opacity="0.5" />
+                    </svg>
+                </div>
+                <div class="if-content">
+                    <span class="tag">Publication</span>
+                    <h3>Automatic Route for Foreign Investment in Nepal</h3>
+                    <p>
+                        Nepal introduces an Automatic Route for FDI, removing red tape and
+                        making it faster and easier for global investors to enter the
+                        market.
+                    </p>
+                    <span class="date">2026</span>
+                    <a href="insights.html#automatic-route-fdi" class="btn btn-primary">Read the full analysis
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+            </div>
 
-         </div>
-               
-                <div class="uk-width-1-2@l">
-                    <div class="uk-margin uk-text-left uk-scrollspy-inview uk-animation-slide-bottom-medium" uk-scrollspy-class>
-                        @foreach($news as $value)
-                            @if($loop->iteration==1)
-                        <a class="uk-container uk-inline-clip uk-transition-toggle uk-link-toggle" style="min-height: 200px" tabindex="0" href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}">
-                            <canvas width="1080" height="370"></canvas>
-                             @if($value->page_thumbnail)
-                            <img class="uk-image uk-cover" alt="" uk-cover="" data-src="{{asset('uploads/original/' . $value->page_thumbnail)}}"  uk-img="">
-                            @else
-                              <img class="uk-image uk-cover" alt="" uk-cover="" data-src="{{asset('images/default.png')}}"  uk-img="">
-                              @endif
-                            <div class="uk-overlay-primary  uk-overlay uk-position-cover"></div>
-                            </a>
-                            <div class="uk-overlay uk-position-bottom-left uk-margin-remove-first-child">
-                                <h3 class="text-white uk-text-bold uk-h4 uk-margin-small-bottom">
-                                    <a href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}">
-                                    {{$value->post_title}}</a>
-                                </h3>
-                                 <a href="#">  <span class="uk-badge bg-1 uk-margin-small">{{post_parent($value->uri)->post_title}}</span></a>
-                            </div>
-                        
-                            @endif
-                        @endforeach
+            <div class="if-panel" data-panel="2">
+                <div class="if-visual">
+                    <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="600" height="400" fill="#0E3F69" />
+                        <rect x="60" y="260" width="40" height="90" fill="#1CA9E1" opacity="0.5" />
+                        <rect x="130" y="220" width="40" height="130" fill="#1CA9E1" opacity="0.65" />
+                        <rect x="200" y="180" width="40" height="170" fill="#1CA9E1" opacity="0.8" />
+                        <rect x="270" y="120" width="40" height="230" fill="#1CA9E1" />
+                        <rect x="340" y="150" width="40" height="200" fill="#1CA9E1" opacity="0.85" />
+                        <rect x="410" y="90" width="40" height="260" fill="#ffffff" />
+                        <rect x="480" y="130" width="40" height="220" fill="#1CA9E1" opacity="0.7" />
+                    </svg>
+                </div>
+                <div class="if-content">
+                    <span class="tag">Publication</span>
+                    <h3>Nepal Economic Update &mdash; 2025/26 (11 Months)</h3>
+                    <p>
+                        Remittances rose 38.2% to NPR 2,121 billion, lifting reserves to
+                        19.1 months of import cover, with inflation averaging a benign
+                        2.89%.
+                    </p>
+                    <span class="date">2026</span>
+                    <a href="insights.html#nepal-economic-update-2025-26" class="btn btn-primary">Read the full analysis
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+            </div>
+
+            <div class="if-tabs" id="if-tabs">
+                <button class="if-tab active" data-index="0">
+                    Nepal Budget 2083/84 &mdash; Key Highlights<span class="bar"></span>
+                </button>
+                <button class="if-tab" data-index="1">
+                    Automatic Route for Foreign Investment<span class="bar"></span>
+                </button>
+                <button class="if-tab" data-index="2">
+                    Nepal Economic Update 2025/26<span class="bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="if-more">
+                <p>
+                    New analysis published as Nepal&rsquo;s fiscal and regulatory
+                    landscape evolves.
+                </p>
+                <a href="insights.html" class="btn btn-line"
+                    style="border-color: rgba(255, 255, 255, 0.4); color: #fff">View all publications
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ NBSM DIFFERENCE ============ -->
+    <section class="section" style="padding-top: 90px; padding-bottom: 90px">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow on-light">The NBSM difference</span>
+                <h2>Five attributes, legible in ten seconds.</h2>
+                <p>
+                    Not claims &mdash; proof. Every one of these is demonstrated through
+                    the numbers, the network and the way we frame our work, not just
+                    stated.
+                </p>
+            </div>
+            <div class="attr-grid reveal">
+                <div class="attr-card">
+                    <div class="idx">01</div>
+                    <h4>Credibility</h4>
+                    <p>Named clients, mandates and standing.</p>
+                </div>
+                <div class="attr-card">
+                    <div class="idx">02</div>
+                    <h4>Scale</h4>
+                    <p>130+ professionals, two locations.</p>
+                </div>
+                <div class="attr-card">
+                    <div class="idx">03</div>
+                    <h4>Expertise</h4>
+                    <p>Multidisciplinary depth across six services.</p>
+                </div>
+                <div class="attr-card">
+                    <div class="idx">04</div>
+                    <h4>International reach</h4>
+                    <p>Moore Global &mdash; 116+ countries.</p>
+                </div>
+                <div class="attr-card">
+                    <div class="idx">05</div>
+                    <h4>Commercial relevance</h4>
+                    <p>Outcomes framed, not services listed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ AT A GLANCE ============ -->
+    <section class="section bg-paper">
+        <div class="wrap">
+            <div class="about-grid">
+                <div class="reveal">
+                    <span class="eyebrow on-light">Who we are</span>
+                    <h2 style="margin-top: 18px; font-size: clamp(26px, 3vw, 38px)">
+                        A premier accounting and consulting firm, built for Nepal&rsquo;s
+                        ambitions.
+                    </h2>
+                    <div class="about-copy" style="margin-top: 24px">
+                        <p>
+                            NBSM is a premier accounting and consulting firm of Nepal,
+                            offering a full range of services in Audit, Tax, Deal Advisory,
+                            Risk &amp; Consulting, Accounting &amp; Outsourcing and
+                            Technology &amp; Digital to national and multinational companies
+                            of every size.
+                        </p>
+                        <p>
+                            Founded in 2009, NBSM has positioned itself as one of the
+                            leading and most reputed accounting firms in Nepal within a very
+                            short span of time.
+                        </p>
                     </div>
-                    <div class="uk-margin uk-text-left">
-                        <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-grid-medium uk-grid" uk-grid="">
-                            <div >
-                                <div>
-                                    @foreach($news as $value)
-                                        @if($loop->iteration==2)
-                                    <a class="uk-item uk-inline-clip uk-transition-toggle uk-link-toggle uk-scrollspy-inview uk-animation-slide-bottom-medium"  tabindex="0"
-                                       href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}" >
-                                        <canvas width="650" height="500"></canvas>
-                                    @if($value->page_thumbnail)
-                                    <img class="uk-image uk-cover" alt="" uk-cover="" data-src="{{asset('uploads/original/' . $value->page_thumbnail)}}"  uk-img="">
-                                    @else
-                                      <img class="uk-image uk-cover" alt="" uk-cover="" data-src="{{asset('images/default.png')}}"  uk-img="">
-                                      @endif
-                                        <div class="uk-overlay-primary  uk-position-cover"></div>
-                                        <div class="uk-overlay uk-width-medium uk-position-bottom-left uk-margin-remove-first-child">
-                                            <h3 class="text-white uk-h4 uk-margin-small-bottom"> {{$value->post_title}}</h3>
-                                             <a href="#">  <span class="uk-badge bg-2 uk-margin-small">{{post_parent($value->uri)->post_title}}</span></a>
-                                        </div>
-                                    </a>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    @foreach($news as $value)
-                                        @if($loop->iteration==3)
-                                    <a class="uk-item uk-inline-clip uk-transition-toggle uk-link-toggle uk-scrollspy-inview uk-animation-slide-bottom-medium" tabindex="0" href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}" >
-                                        <canvas width="650" height="500"></canvas>
-                                        @if($value->page_thumbnail)
-                            <img class="uk-image uk-cover" alt="" uk-cover="" data-src="{{asset('uploads/original/' . $value->page_thumbnail)}}"  uk-img="">
-                            @else
-                              <img class="uk-image uk-cover" alt="" uk-cover="" data-src="{{asset('images/default.png')}}"  uk-img="">
-                              @endif
-                                        <div class="uk-overlay-primary  uk-position-cover"></div>
-                                        <div class="uk-overlay uk-width-medium uk-position-bottom-left uk-margin-remove-first-child">
-                                            <h3 class="text-white uk-h4 uk-margin-small-bottom">{{$value->post_title}}</h3>
-                                             <a href="#">  <span class="uk-badge bg-3 uk-margin-small">{{post_parent($value->uri)->post_title}}</span></a>
-                                        </div>
-                                    </a>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
+                    <a href="about.html" class="btn btn-line" style="margin-top: 28px">More about NBSM
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+                <div class="about-panel reveal">
+                    <div class="row">
+                        <span class="l">Founded</span><span class="n">2009</span>
+                    </div>
+                    <div class="row">
+                        <span class="l">Team of professionals</span><span class="n">130+</span>
+                    </div>
+                    <div class="row">
+                        <span class="l">Full-time Chartered Accountants</span><span class="n">35+</span>
+                    </div>
+                    <div class="row">
+                        <span class="l">Global network member</span><span class="n">Moore Global</span>
+                    </div>
+                    <div class="row">
+                        <span class="l">Local Big 4 partner firm</span><span class="n">Nepal</span>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- ============ SERVICES TEASER ============ -->
+    <section class="section" id="services">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow on-light">Service architecture</span>
+                <h2>Six services &mdash; led by the outcome.</h2>
+                <p>
+                    Each service leads with the benefit it delivers, then the capability
+                    behind it.
+                </p>
+            </div>
+            <div class="services-grid reveal">
+                <div class="service-card">
+                    <div class="icon-badge">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z" />
+                            <path d="M9 12l2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h3>Audit &amp; Assurance</h3>
+                    <p>Confidence in financial reporting, governance and compliance.</p>
+                    <a class="more" href="services.html#audit-assurance">Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+                <div class="service-card">
+                    <div class="icon-badge">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path d="M9 3v4M15 3v4M4 8h16M6 8v11a2 2 0 002 2h8a2 2 0 002-2V8M9 13h6M9 17h4" />
+                        </svg>
+                    </div>
+                    <h3>Tax</h3>
+                    <p>
+                        Practical tax advice for business in Nepal and across borders.
+                    </p>
+                    <a class="more" href="services.html#tax">Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+                <div class="service-card">
+                    <div class="icon-badge">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z" />
+                        </svg>
+                    </div>
+                    <h3>Deal Advisory</h3>
+                    <p>
+                        Better decisions around transactions, valuation and diligence.
+                    </p>
+                    <a class="more" href="services.html#deal-advisory">Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+                <div class="service-card">
+                    <div class="icon-badge">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M12 7v5l3 3" />
+                        </svg>
+                    </div>
+                    <h3>Risk &amp; Consulting</h3>
+                    <p>Stronger governance, controls, performance and resilience.</p>
+                    <a class="more" href="services.html#risk-consulting">Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+                <div class="service-card flagship">
+                    <span class="tag">Growth engine</span>
+                    <h3 style="margin-top: 12px">Accounting &amp; Outsourcing</h3>
+                    <p>Scalable finance and audit support, delivered from Nepal.</p>
+                    <a class="more" href="global.html#outsourcing">See the outsourcing platform
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+                <div class="service-card">
+                    <div class="icon-badge">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <rect x="3" y="4" width="18" height="14" rx="1.5" />
+                            <path d="M8 21h8M12 18v3" />
+                        </svg>
+                    </div>
+                    <h3>Technology &amp; Digital</h3>
+                    <p>Technology, controls, security and digital transformation.</p>
+                    <a class="more" href="services.html#technology-digital">Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 36px" class="reveal">
+                <a href="services.html" class="btn btn-line">Explore all services
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+            </div>
         </div>
     </section>
-    <!-- end section -->
 
+    <!-- ============ INDUSTRIES TEASER ============ -->
+    <section class="section bg-paper" id="industries">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow on-light">Sector expertise</span>
+                <h2>Expertise where it matters &mdash; nine sectors.</h2>
+                <p>
+                    Our teams are organised around the sectors that power Nepal&rsquo;s
+                    economy.
+                </p>
+            </div>
+            <div class="industry-grid reveal">
+                <div class="industry-tile">
+                    <span class="num">01</span>
+                    <h4>Banking &amp; Financial Services</h4>
+                </div>
+                <div class="industry-tile">
+                    <span class="num">02</span>
+                    <h4>Energy &amp; Infrastructure</h4>
+                </div>
+                <div class="industry-tile">
+                    <span class="num">03</span>
+                    <h4>Manufacturing</h4>
+                </div>
+                <div class="industry-tile">
+                    <span class="num">04</span>
+                    <h4>Technology &amp; Telecommunications</h4>
+                </div>
+                <div class="industry-tile">
+                    <span class="num">05</span>
+                    <h4>Trading &amp; Consumer</h4>
+                </div>
+                <div class="industry-tile">
+                    <span class="num">06</span>
+                    <h4>Hospitality &amp; Tourism</h4>
+                </div>
+                <div class="industry-tile">
+                    <span class="num">07</span>
+                    <h4>Healthcare &amp; Education</h4>
+                </div>
+                <div class="industry-tile">
+                    <span class="num">08</span>
+                    <h4>Development &amp; Non-Profit</h4>
+                </div>
+                <div class="industry-tile">
+                    <span class="num">09</span>
+                    <h4>Real Estate &amp; Construction</h4>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 36px" class="reveal">
+                <a href="industries.html" class="btn btn-line">See all industries
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GLOBAL REACH TEASER ============ -->
+    <section class="section vision2030" id="global"
+        style="
+        background: radial-gradient(
+          120% 140% at 100% 0%,
+          #124d80 0%,
+          var(--ink) 45%,
+          #082a48 100%
+        );
+        color: #fff;
+      ">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Global reach</span>
+                <h2 style="color: #fff">Nepal expertise. Global connectivity.</h2>
+                <p style="color: rgba(255, 255, 255, 0.65)">
+                    An independent firm associated with Moore Global &mdash; access to
+                    international expertise across markets.
+                </p>
+            </div>
+            <div class="journeys reveal">
+                <div class="journey">
+                    <div class="idx">Invest in Nepal</div>
+                    <h4>FDI &amp; market entry</h4>
+                    <p>
+                        FDI and market entry support for foreign investors evaluating
+                        Nepal.
+                    </p>
+                </div>
+                <div class="journey">
+                    <div class="idx">Operate in Nepal</div>
+                    <h4>On-the-ground advisory</h4>
+                    <p>
+                        Accounting, tax, compliance and advisory delivered on the ground.
+                    </p>
+                </div>
+                <div class="journey">
+                    <div class="idx">Outsource to Nepal</div>
+                    <h4>Finance operations, delivered</h4>
+                    <p>
+                        Accounting, audit and finance operations delivered from Nepal.
+                    </p>
+                </div>
+            </div>
+            <div class="moore-badge reveal">
+                <img class="moore-logo" src="assets/img/moore-logo-ondark.png" alt="Moore Global" />
+                <span class="moore-divider"></span>
+                <span class="n">116+</span>
+                <span class="l">countries in the Moore Global network.</span>
+            </div>
+            <div style="margin-top: 32px" class="reveal">
+                <a href="global.html" class="btn btn-cyan">Explore our global network
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ DOING BUSINESS IN NEPAL TEASER ============ -->
+    <section class="section bg-paper" id="nepal">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow on-light">Doing business in Nepal &middot; microsite</span>
+                <h2>Your gateway to the Nepalese market.</h2>
+                <p>
+                    A dedicated journey for the international-business audience &mdash;
+                    from why Nepal, through to ongoing compliance.
+                </p>
+            </div>
+            <div class="nepal-cta reveal">
+                <p>Considering Nepal? Talk to NBSM.</p>
+                <a href="nepal.html" class="btn btn-cyan">Start the conversation
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ EXPERIENCE & PROOF ============ -->
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow on-light">Proof &amp; people</span>
+                <h2>Make it feel like a firm, not a portal.</h2>
+                <p>
+                    Real case studies in a consistent format, and partner-led content on
+                    every major service page.
+                </p>
+            </div>
+            <div class="case-grid reveal">
+                <div class="case-card">
+                    <span class="tag">Case study</span>
+                    <h4>Restructuring a hydropower financing package</h4>
+                    <div class="steps">
+                        <span>Challenge</span><span>Complexity</span><span>Approach</span><span>Outcome</span>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <span class="tag">Case study</span>
+                    <h4>Due diligence for a cross-border acquisition</h4>
+                    <div class="steps">
+                        <span>Challenge</span><span>Complexity</span><span>Approach</span><span>Outcome</span>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <span class="tag">Case study</span>
+                    <h4>Standing up accounting outsourcing for a UK CPA firm</h4>
+                    <div class="steps">
+                        <span>Challenge</span><span>Complexity</span><span>Approach</span><span>Outcome</span>
+                    </div>
+                </div>
+            </div>
+            <div class="partner-note reveal">
+                <p>
+                    <strong>Partner-led content.</strong> Every major service page names
+                    the responsible partner and offers a direct route to contact them.
+                </p>
+                <a href="about.html#leaders" class="btn btn-line">Meet the team
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CAREERS BANNER ============ -->
+    <section class="career-banner" id="careers">
+        <div class="wrap">
+            <h2>Take your career to the next level with NBSM.</h2>
+            <a href="careers.html" class="btn btn-ghost">Explore careers
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></a>
+        </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final-cta">
+        <div class="wrap">
+            <span class="step-num">LET&rsquo;S TALK ABOUT YOUR BUSINESS</span>
+            <h2>Trusted advice. Global perspective. Local expertise.</h2>
+            <div class="actions">
+                <a href="contact.html" class="btn btn-cyan">Talk to an expert
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+                <a href="contact.html" class="btn btn-ghost">Request a proposal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT TEASER ============ -->
+    <section class="section" id="contact">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow on-light">Get in touch</span>
+                <h2>How can we help you?</h2>
+                <p>
+                    Reach out to discuss an engagement, request a proposal, or speak
+                    with a specific practice.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="reveal">
+                    <div class="office">
+                        <span class="label">Head Office &mdash; Kathmandu</span>
+                        <h4>Four Square Complex</h4>
+                        <p>
+                            6th Floor, Block C &amp; D, Naryanchaur, Naxal, Kathmandu, Nepal
+                        </p>
+                        <p>977-1-4533069, 4515242 &middot; info@nbsm.com.np</p>
+                    </div>
+                    <div class="office">
+                        <span class="label">Branch Office &mdash; Butwal</span>
+                        <h4>Kalikanagar</h4>
+                        <p>Kalikanagar, Butwal, Rupandehi, Nepal</p>
+                        <p>071-415065 &middot; vijay.neupane@nbsm.com.np</p>
+                    </div>
+                </div>
+                <div class="reveal"
+                    style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              gap: 20px;
+            ">
+                    <p style="font-size: 15.5px">
+                        Prefer to fill out a form? Head to our dedicated contact page for
+                        the full enquiry form and office details.
+                    </p>
+                    <a href="contact.html" class="btn btn-primary" style="align-self: flex-start">Go to contact page
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 @section('libraries')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.alert').hide(8000);
-        });
-    </script>
 @endsection
