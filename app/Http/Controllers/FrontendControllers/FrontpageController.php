@@ -76,15 +76,20 @@ class FrontpageController extends Controller
             $data['template'] = $data['template'];
         }
         if ($data) {
-            $posts = PostModel::where('post_type', $data->id)->orderBy('id', 'desc')->paginate(12);
+            $posts = PostModel::where('post_type', $data->id)
+                    ->where('status', 1)
+                    ->where('post_parent', 0)
+                    ->orderBy('id', 'asc')
+                    ->paginate(12);
         }
         $value = $uri;
         $industry = PostModel::where('status', 1)->where('post_type', 15)->get();
         $country = CountryModel::all();
         $branches = AssociatedPostModel::where('post_id', '161')->get();
-
-
         $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
+
+
+        // dd($posts,$data);
         return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value'));
     }
 

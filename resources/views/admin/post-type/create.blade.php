@@ -124,32 +124,6 @@
                     </div>
 
 
-                    {{-- Meta Keyword --}}
-                    <div class="form-group nbms-form-group">
-                        <label class="col-lg-3 control-label">
-                            Meta Keyword
-                        </label>
-
-                        <div class="col-lg-8">
-                            <input type="text" id="meta_keyword" name="meta_keyword" class="form-control"
-                                placeholder="Enter meta keywords">
-                        </div>
-                    </div>
-
-
-                    {{-- Meta Description --}}
-                    <div class="form-group nbms-form-group">
-                        <label class="col-lg-3 control-label">
-                            Meta Description
-                        </label>
-
-                        <div class="col-lg-8">
-                            <input type="text" id="meta_description" name="meta_description" class="form-control"
-                                placeholder="Enter meta description">
-                        </div>
-                    </div>
-
-
                     {{-- Content --}}
                     <div class="form-group nbms-form-group">
                         <label class="col-lg-3 control-label">
@@ -203,6 +177,32 @@
                                 <i class="fa fa-image"></i>
                                 Upload a banner image for this post type
                             </div>
+                        </div>
+                    </div>
+
+
+                    {{-- Meta Keyword --}}
+                    <div class="form-group nbms-form-group">
+                        <label class="col-lg-3 control-label">
+                            Meta Keyword
+                        </label>
+
+                        <div class="col-lg-8">
+                            <input type="text" id="meta_keyword" name="meta_keyword" class="form-control"
+                                placeholder="Enter meta keywords">
+                        </div>
+                    </div>
+
+
+                    {{-- Meta Description --}}
+                    <div class="form-group nbms-form-group">
+                        <label class="col-lg-3 control-label">
+                            Meta Description
+                        </label>
+
+                        <div class="col-lg-8">
+                            <input type="text" id="meta_description" name="meta_description" class="form-control"
+                                placeholder="Enter meta description">
                         </div>
                     </div>
 
