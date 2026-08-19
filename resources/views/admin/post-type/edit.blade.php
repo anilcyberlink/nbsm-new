@@ -137,36 +137,6 @@
                     </div>
 
 
-                    {{-- Meta Keyword --}}
-                    <div class="form-group nbms-form-group">
-                        <label class="col-lg-3 control-label">
-                            Meta Keyword
-                        </label>
-
-                        <div class="col-lg-8">
-
-                            <input type="text" id="meta_keyword" name="meta_keyword" class="form-control"
-                                value="{{ $data->meta_keyword }}">
-
-                        </div>
-                    </div>
-
-
-                    {{-- Meta Description --}}
-                    <div class="form-group nbms-form-group">
-                        <label class="col-lg-3 control-label">
-                            Meta Description
-                        </label>
-
-                        <div class="col-lg-8">
-
-                            <input type="text" id="meta_description" name="meta_description" class="form-control"
-                                value="{{ $data->meta_description }}">
-
-                        </div>
-                    </div>
-
-
                     {{-- Content --}}
                     <div class="form-group nbms-form-group">
                         <label class="col-lg-3 control-label">
@@ -253,6 +223,36 @@
 
                         </div>
 
+                    </div>
+
+
+                    {{-- Meta Keyword --}}
+                    <div class="form-group nbms-form-group">
+                        <label class="col-lg-3 control-label">
+                            Meta Keyword
+                        </label>
+
+                        <div class="col-lg-8">
+
+                            <input type="text" id="meta_keyword" name="meta_keyword" class="form-control"
+                                value="{{ $data->meta_keyword }}">
+
+                        </div>
+                    </div>
+
+
+                    {{-- Meta Description --}}
+                    <div class="form-group nbms-form-group">
+                        <label class="col-lg-3 control-label">
+                            Meta Description
+                        </label>
+
+                        <div class="col-lg-8">
+
+                            <input type="text" id="meta_description" name="meta_description" class="form-control"
+                                value="{{ $data->meta_description }}">
+
+                        </div>
                     </div>
 
 
