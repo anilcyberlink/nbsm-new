@@ -23,7 +23,6 @@ use App\Models\Settings\SettingModel;
 use App\Models\Galleries\ImageGalleryModel;
 use App\Models\Galleries\ImageGalleryCategoryModel;
 use App\Models\Galleries\VideoGalleryModel;
-use Mail;
 use App\Mail\SendMail;
 use App\Mail\SendMailContact;
 use App\Mail\SendResume;
@@ -39,15 +38,15 @@ use App\Models\Taxliability\TaxliabilityCompanyModel;
 use App\Models\Taxliability\TaxliabilityEligibilityModel;
 use App\Models\Taxliability\TaxliabilityHolderlistModel;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class FrontpageController extends Controller
 {
 
     public function index(Request $request)
     {
-        // dd(PostTypeModel::where(['is_menu' => '1'])
-        //     ->orderBy('ordering', 'asc')
-        //     ->get());
+        // dd(SettingModel::first());
         $banner = BannerModel::where('status', 1)->first();
         $resource = PostModel::where('post_type', 19)->where('post_parent', '!=', 0)->where('show_in_home', "1")->orderBy('home_order', 'asc')->take(4)->get();
         $service = PostTypeModel::where('id', 16)->first();
@@ -77,10 +76,10 @@ class FrontpageController extends Controller
         }
         if ($data) {
             $posts = PostModel::where('post_type', $data->id)
-                    ->where('status', 1)
-                    ->where('post_parent', 0)
-                    ->orderBy('id', 'asc')
-                    ->paginate(12);
+                ->where('status', 1)
+                ->where('post_parent', 0)
+                ->orderBy('id', 'asc')
+                ->paginate(12);
         }
         $value = $uri;
         $industry = PostModel::where('status', 1)->where('post_type', 15)->get();
@@ -240,9 +239,14 @@ class FrontpageController extends Controller
     private function getCaptcha($Secretkey)
     {
         $secret = env('SECRET_KEY');
-        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$Secretkey}");
-        $return = json_decode($response);
-        return $return;
+        $response = Http::asForm()->post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            [
+                'secret' => $secret,
+                'response' => $Secretkey,
+            ]
+        );
+        return $response->object();
     }
 
     public function career_navigation(Request $request)
@@ -443,27 +447,49 @@ class FrontpageController extends Controller
     }
 
     public function contact_form(Request $request)
-
     {
-        $return = $this->getCaptcha($request['g_recaptcha_response']);
-        if ($request->isMethod('post') && $return->success == true && $return->score > 0.5) {
-            $request->validate([
-                'firstname' => 'required',
-                'lastname' => 'required',
-                'email' => 'required',
-                'phone' => 'required'
+        // dd($request->all());
 
+        $result = $this->getCaptcha($request['g_recaptcha_response']);
+
+        if ($request->isMethod('post') && $result->success == true) {
+            $request->validate([
+                'fname'    => 'required|string',
+                'lname'    => 'required|string',
+                'email'    => 'required|email',
+                'contact'  => 'required',
+                'cname'    => 'nullable|string',
+                'message'  => 'nullable|string',
+            ], [
+                'fname.required'   => 'First name is required.',
+                'lname.required'   => 'Last name is required.',
+                'email.required'   => 'Email address is required.',
+                'email.email'      => 'Please enter a valid email address.',
+                'contact.required' => 'Contact number is required.',
             ]);
 
-            //   $create=Contact::create($data);
-            $setting = SettingModel::where('id', 1)->first();
+            $contact = Contact::create([
+                'first_name' => $request->fname,
+                'last_name'  => $request->lname,
+                'email'      => $request->email,
+                'contact'    => $request->contact,
+                'company'    => $request->cname,
+                'comments'   => $request->message,
+            ]);
 
-            //   if ($create)
-            //   {
-            $data = SettingModel::where('id', 1)->first();
-            Mail::to($setting->email_secondary)->send(new ContactMail());
-            return back()->with('message', 'Contact form submitted successfully');
-            //   }
+            return new ContactMail($contact);
+            // Mail::to('info@nbsm.com.np')->send(new ContactMail($contact));
+
+            return back()->with([
+                'success' => true,
+                'message' => 'Contact form submitted successfully'
+            ]);
+
+        } else {
+            return back()->withInput()->with([
+                'error' => true,
+                'message' => 'You are robot. Try Again.'
+            ]);
         }
     }
 

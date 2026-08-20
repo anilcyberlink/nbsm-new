@@ -145,7 +145,7 @@
 
                     <ul class="nav sub-nav">
 
-                        <?php /*?> ?> ?> ?> ?> ?> ?> ?>
+                        <?php /*?> ?> ?> ?> ?> ?> ?> ?> ?>
 
                         <li>
                             <a href="{{ url('admin/portfoliocategory') }}">
@@ -175,13 +175,6 @@
                     <a href="{{ url('admin/proposal-request') }}">
                         <span class="fa fa-file-text-o text-info"></span>
                         <span class="sidebar-title">Proposal</span>
-                    </a>
-                </li>
-
-                <li class="{{ request()->is('admin/contact*') ? 'active' : '' }}">
-                    <a href="{{ url('admin/contact') }}">
-                        <span class="fa fa-phone text-info"></span>
-                        <span class="sidebar-title">Contact Us</span>
                     </a>
                 </li>
             @endif
@@ -611,6 +604,15 @@
                 </li>
             @endif
 
+
+
+
+            <li class="{{ request()->is('admin/contact*') ? 'active' : '' }}">
+                <a href="{{ url('admin/contact') }}">
+                    <span class="fa fa-phone text-info"></span>
+                    <span class="sidebar-title">Contact Inquiries</span>
+                </a>
+            </li>
 
             {{-- Settings --}}
             @if (checkAuth(12))

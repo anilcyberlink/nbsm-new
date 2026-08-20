@@ -29,14 +29,17 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- favicon -->
-    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('themes-assets/images/favicon.png') }}" type="image/png">
     <meta name="theme-color" content="#0e5d97">
     <!-- end favicon -->
 
     <link rel="stylesheet" href="{{ asset('themes-assets/assets/styles.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
+    @include('themes.default.common.response')
+
     <div class="utility-bar" id="utility-bar">
         <div class="wrap">
             <div class="utility-left">
@@ -59,7 +62,7 @@
 
     <header id="site-header">
         <div class="wrap">
-            <a href="index.php" class="logo-wrap">
+            <a href="{{url('/')}}" class="logo-wrap">
                 <img class="logo-mark logo-mark-dark" src="{{ asset('themes-assets/assets/img/logo-ondark.png') }}" alt="NBSM &amp; Associates"
                     style="display: none" />
                 <img class="logo-mark logo-mark-light" src="{{ asset('themes-assets/assets/img/logo.png')}}" alt="NBSM &amp; Associates" />

@@ -34,6 +34,8 @@
                         <label class="col-lg-3 control-label">Location</label>
                         <div class="col-lg-8">
                             <input type="text" name="location1" class="form-control" value="{{ $data->location1 }}">
+                            <input type="text" name="address2" class="form-control mb10"
+                                value="{{ $data->address2 }}">
                         </div>
                     </div>
 
@@ -103,6 +105,62 @@
                 </div>
             </div>
 
+            {{-- Additional Fields --}}
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-title">Branch Office</span>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Location</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="location_link" class="form-control mb10"
+                                value="{{ $data->location_link }}">
+
+                            <input type="text" name="field2" class="form-control" value="{{ $data->field2 }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Number</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="website2" class="form-control mb10"
+                                value="{{ $data->website2 }}">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Email</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="field1" class="form-control" value="{{ $data->field1 }}">
+                        </div>
+                    </div>
+
+
+                    {{-- <div class="form-group">
+                        <label class="col-lg-3 control-label">Field 3</label>
+                        <div class="col-lg-8">
+
+                            <input type="text" name="field3" class="form-control" value="{{ $data->field3 }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Field 4</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="location2" class="form-control mb10"
+                                value="{{ $data->location2 }}">
+
+                            <input type="text" name="field4" class="form-control" value="{{ $data->field4 }}">
+                        </div>
+                    </div> --}}
+
+                </div>
+            </div>
+
 
             {{-- Website Content --}}
             <div class="panel">
@@ -162,59 +220,6 @@
 
                 </div>
             </div>
-
-
-            {{-- Additional Fields --}}
-            <div class="panel">
-                <div class="panel-heading">
-                    <span class="panel-title">Additional Fields</span>
-                </div>
-
-                <div class="panel-body">
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Field 1</label>
-                        <div class="col-lg-8">
-                            <input type="text" name="website2" class="form-control mb10"
-                                value="{{ $data->website2 }}">
-
-                            <input type="text" name="field1" class="form-control" value="{{ $data->field1 }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Field 2</label>
-                        <div class="col-lg-8">
-                            <input type="text" name="location_link" class="form-control mb10"
-                                value="{{ $data->location_link }}">
-
-                            <input type="text" name="field2" class="form-control" value="{{ $data->field2 }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Field 3</label>
-                        <div class="col-lg-8">
-                            <input type="text" name="address2" class="form-control mb10"
-                                value="{{ $data->address2 }}">
-
-                            <input type="text" name="field3" class="form-control" value="{{ $data->field3 }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Field 4</label>
-                        <div class="col-lg-8">
-                            <input type="text" name="location2" class="form-control mb10"
-                                value="{{ $data->location2 }}">
-
-                            <input type="text" name="field4" class="form-control" value="{{ $data->field4 }}">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
 
             {{-- Save --}}
             <div class="panel">
