@@ -4,36 +4,14 @@
 @section('meta_description', $data->meta_description)
 @section('content')
 
-<style>
-    .map-wrapper {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .map-wrapper iframe {
-        width: 100%;
-        min-height: 450px;
-        border: 0;
-        display: block;
-    }
-    .contact-map {
-        margin-top: 60px;
-    }
-
-    @media (max-width: 768px) {
-        .contact-map {
-            margin-top: 40px;
-        }
-    }
-</style>
     <section class="page-header">
         <div class="ascent-strip" id="ascent-strip" aria-hidden="true"></div>
         <div class="wrap">
             <div class="breadcrumb"><a href="{{ url('/') }}">Home</a> &nbsp;/&nbsp; <span>{{ $data->post_type }}</span>
             </div>
-            <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">Get in touch</span>
-            <h1 style="margin-top:16px;">How can we help you?</h1>
-            <p class="lead">Reach out to discuss an engagement, request a proposal, or speak with a specific practice.</p>
+            <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->uid }}</span>
+            <h1 style="margin-top:16px;">{{ $data->caption }}</h1>
+            <p class="lead">{!! $data->content !!}</p>
         </div>
     </section>
     <section class="section">

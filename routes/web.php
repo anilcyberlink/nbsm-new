@@ -32,7 +32,8 @@ Route::redirect('/dashboard', '/admin/dashboard', 301);
 Route::get('banners', 'FrontendControllers\FrontpageController@banners');
 
 // Normal Pages
-Route::get('{uri}.html', 'FrontendControllers\FrontpageController@pagedetail')->name('page.pagedetail');
+// Route::get('{uri}.html', 'FrontendControllers\FrontpageController@pagedetail')->name('page.pagedetail');
+Route::get('page/{posttype}/{uri}', 'FrontendControllers\FrontpageController@pagedetail')->name('page.pagedetail');
 Route::get('page/{uri}', 'FrontendControllers\FrontpageController@posttype')->name('page.posttype');
 
 
@@ -60,7 +61,7 @@ Route::post('/newsletter/newsletter-signup', 'FrontendControllers\NewsletterSign
 Route::post('/dwn/dwnpdf', 'FrontendControllers\NewsletterSignupController@dwnpdf')->name('dwnpdf');
 Route::get('/dwn/dwnform/{key_string}', 'FrontendControllers\NewsletterSignupController@dwnform')->name('dwnform');
 
-Route::get('page/photogallery/{category_id}', 'FrontendControllers\FrontpageController@photo_gallery');
+// Route::get('page/photogallery/{category_id}', 'FrontendControllers\FrontpageController@photo_gallery');
 
 // Send Mail
 Route::post('page/contact/sendmail', 'FrontendControllers\FrontpageController@sendmail')->name('sendmail');
