@@ -140,7 +140,6 @@ function posttype_url($uri)
     }
     return $data->uri;
 }
-
 // Check and List Child Post
 function has_child_post($id)
 {

@@ -92,8 +92,10 @@ class FrontpageController extends Controller
         return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value'));
     }
 
-    public function pagedetail($uri)
+    // public function pagedetail($uri)
+    public function pagedetail($posttype, $uri)
     {
+        // dd($uri);
         if (!check_uri($uri)) {
             abort(404);
         }
@@ -112,6 +114,8 @@ class FrontpageController extends Controller
         $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
         $pos_type = PostTypeModel::where('id', $data->post_type)->first();
         $related = PostModel::where('post_type', 16)->where('post_parent', '!=', 0)->get();
+
+        // dd($data);
         return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related'));
     }
 
@@ -484,7 +488,6 @@ class FrontpageController extends Controller
                 'success' => true,
                 'message' => 'Contact form submitted successfully'
             ]);
-
         } else {
             return back()->withInput()->with([
                 'error' => true,
