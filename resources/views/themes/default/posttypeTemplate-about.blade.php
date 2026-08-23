@@ -11,7 +11,7 @@
             <div class="breadcrumb"><a href="{{url('/')}}">Home</a> &nbsp;/&nbsp; <span>{{ $data->post_type }}</span></div>
             <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->post_type }}</span>
             <h1 style="margin-top:16px;">{{ $data->uid }}</h1>
-            <p class="lead">{{ $data->caption }}</p>
+            <div class="lead">{{ $data->caption }}</div>
         </div>
     </section>
     <section class="section">

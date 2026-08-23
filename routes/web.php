@@ -33,7 +33,7 @@ Route::get('banners', 'FrontendControllers\FrontpageController@banners');
 
 // Normal Pages
 // Route::get('{uri}.html', 'FrontendControllers\FrontpageController@pagedetail')->name('page.pagedetail');
-Route::get('page/{posttype}/{uri}', 'FrontendControllers\FrontpageController@pagedetail')->name('page.pagedetail');
+Route::get('page/{parent}/{uri}', 'FrontendControllers\FrontpageController@pagedetail')->name('page.pagedetail');
 Route::get('page/{uri}', 'FrontendControllers\FrontpageController@posttype')->name('page.posttype');
 
 

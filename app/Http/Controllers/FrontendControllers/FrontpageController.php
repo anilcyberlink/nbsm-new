@@ -70,6 +70,7 @@ class FrontpageController extends Controller
             abort(404);
         }
         $data = PostTypeModel::where('uri', $uri)->first();
+        $contact = PostTypeModel::where('id', '20')->first();
         $tmpl['template'] = 'page';
         if ($tmpl['template']) {
             $data['template'] = $data['template'];
@@ -89,13 +90,12 @@ class FrontpageController extends Controller
 
 
         // dd($posts,$data);
-        return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value'));
+        return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value','contact'));
     }
 
     // public function pagedetail($uri)
-    public function pagedetail($posttype, $uri)
+    public function pagedetail($parent, $uri)
     {
-        // dd($uri);
         if (!check_uri($uri)) {
             abort(404);
         }
@@ -113,10 +113,11 @@ class FrontpageController extends Controller
         $associated_posts = AssociatedPostModel::where('post_id', $data['id'])->orderBy('ordering', 'asc')->paginate(12);
         $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
         $pos_type = PostTypeModel::where('id', $data->post_type)->first();
-        $related = PostModel::where('post_type', 16)->where('post_parent', '!=', 0)->get();
+        $related = PostModel::where('post_type', $pos_type->id)->where('id', '!=', $data->id)->where('post_parent', 0)->get();
+        $contact = PostTypeModel::where('id', '20')->first();
 
-        // dd($data);
-        return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related'));
+        // dd($data,$data_child);
+        return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related','contact'));
     }
 
     public function pagedetail_child($parenturi, $uri)
