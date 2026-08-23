@@ -11,7 +11,7 @@
             </div>
             <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->uid }}</span>
             <h1 style="margin-top:16px;">{{ $data->caption }}</h1>
-            <p class="lead">{!! $data->content !!}</p>
+            <div class="lead">{!! $data->content !!}</div>
         </div>
     </section>
     <section class="section">

@@ -32,6 +32,8 @@
     <link rel="icon" href="{{ asset('themes-assets/images/favicon.png') }}" type="image/png">
     <meta name="theme-color" content="#0e5d97">
     <!-- end favicon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('themes-assets/assets/styles.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">

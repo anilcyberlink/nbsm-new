@@ -11,7 +11,7 @@
             </div>
             <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->uid }}</span>
             <h1 style="margin-top:16px;">{{ $data->caption }}</h1>
-            <p class="lead">{!! $data->content !!}</p>
+            <div class="lead">{!! $data->content !!}</div>
         </div>
     </section>
 
@@ -64,7 +64,7 @@
                         <div>
                             {!! $row->post_excerpt !!}
 
-                            <a href="{{ route('page.pagedetail',['posttype' => $data->uri,'uri' => $row->uri]) }}" class="btn btn-line" style="margin-top:28px;">View Detail<svg
+                            <a href="{{ route('page.pagedetail',['parent' => $data->uri,'uri' => $row->uri]) }}" class="btn btn-line" style="margin-top:28px;">View Detail<svg
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M5 12h14M13 6l6 6-6 6" />
                                 </svg></a>
@@ -77,7 +77,7 @@
     <section class="career-banner">
         <div class="wrap">
             <h2>Not sure which service you need?</h2>
-            <a href="contact.html" class="btn btn-ghost">Talk to an expert <svg viewBox="0 0 24 24" fill="none"
+            <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-ghost">Talk to an expert <svg viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg></a>
