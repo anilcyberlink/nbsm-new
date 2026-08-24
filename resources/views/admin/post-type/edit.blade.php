@@ -72,7 +72,7 @@
 
                             <select name="template" class="form-control">
 
-                                @if ($templates)
+                                {{-- @if ($templates) --}}
 
                                     @foreach ($templates as $key => $template)
                                         <option value="{{ $key }}"
@@ -81,7 +81,7 @@
                                         </option>
                                     @endforeach
 
-                                @endif
+                                {{-- @endif --}}
 
                             </select>
 
