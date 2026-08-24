@@ -26,11 +26,18 @@ class HeaderComposer
             ->get());
 
         $view->with('career', PostModel::where(['id' => '110'])
-            ->orderBy('post_order', 'asc')
             ->first());
 
         $view->with('contact', PostTypeModel::where(['id' => '20'])
-            ->orderBy('ordering', 'asc')
+            ->first());
+
+        $view->with('nepal', PostTypeModel::where(['id' => '22'])
+            ->first());
+
+        $view->with('about', PostTypeModel::where(['id' => '17'])
+            ->first());
+
+        $view->with('global', PostTypeModel::where(['id' => '18'])
             ->first());
 
 
