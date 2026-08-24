@@ -24,41 +24,12 @@
         </div>
     </section>
 
-    <div class="detail-block" id="overview">
-        <div class="wrap">
-            <div class="sd-body-grid reveal">
-                <div class="detail-grid" style="grid-template-columns:1fr;">
-                    <div>
-                        <p style="font-size:16px;color:var(--slate);margin-top:14px;">
-                            {!! $data->post_content !!}
-                        </p>
-                    </div>
-                </div>
-
-                <aside class="sd-side">
-                    <div class="sd-contact-card">
-                        <span class="lbl">Other Services</span>
-                        <div class="related-list">
-                            @foreach ($related as $row)
-                                <a href="{{ route('page.pagedetail',['parent' => $pos_type->uri,'uri' => $row->uri]) }}">{{ $row->post_title }}
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-                                </a>
-                            @endforeach
-                        </div>
-                        <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-cyan" style="margin-top:18px;">Talk to an expert
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </div>
-
     @if($data_child->count() > 0)
         <section class="section bg-paper" id="sd-children">
             <div class="wrap">
                 <div class="section-head reveal">
-                    <span class="eyebrow on-light">Under this service</span>
-                    <h2>How we can help</h2>
+                    <span class="eyebrow on-light">Under this resource</span>
+                    <h2>We have</h2>
                 </div>
 
                 <div class="sd-children-grid reveal">
@@ -66,7 +37,7 @@
                         <a class="sd-child-card" href="{{ route('page.pagedetail',['parent' => $pos_type->uri,'uri' => $child->uri]) }}">
                             <div class="sd-child-thumb"><img src="{{ $child->page_thumbnail ? asset('uploads/medium/'.$child->page_thumbnail) : asset('assets/img/ese.png') }}" /></div>
                             <div class="sd-child-body">
-                                <span class="tag">Sub-service</span>
+                                <span class="tag">{{ $data->post_title }}</span>
                                 <h3>{{ $child->post_title }}</h3>
                                 <p>{{ $child->sub_title }}</p>
                                 <span class="more" >Read more
@@ -78,6 +49,8 @@
                         </a>
                     @endforeach
                 </div>
+
+                {!! $data_child->links('themes.default.common.pagination') !!}
             </div>
         </section>
     @endif

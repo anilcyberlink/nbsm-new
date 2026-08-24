@@ -32,32 +32,12 @@
                         <p style="font-size:16px;color:var(--slate);margin-top:14px;">
                             {!! $data->post_content !!}
                         </p>
-                        @if ($data->icon)
-                            <div style="margin-top:28px;">
-                                <a href="{{ asset('uploads/large/' . $data->icon) }}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="btn btn-primary">
-
-                                    <svg viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M12 3v12"/>
-                                        <path d="M7 10l5 5 5-5"/>
-                                        <path d="M5 21h14"/>
-                                    </svg>
-
-                                    Download PDF
-                                </a>
-                            </div>
-                        @endif
                     </div>
                 </div>
 
                 <aside class="sd-side">
                     <div class="sd-contact-card">
-                        <span class="lbl">Other {{ $pos_type->post_type }}</span>
+                        <span class="lbl">Other Industries</span>
                         <div class="related-list">
                             @foreach ($related as $row)
                                 <a href="{{ route('page.pagedetail',['parent' => $pos_type->uri,'uri' => $row->uri]) }}">{{ $row->post_title }}
