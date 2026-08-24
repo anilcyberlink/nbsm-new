@@ -79,7 +79,7 @@ class FrontpageController extends Controller
             $posts = PostModel::where('post_type', $data->id)
                 ->where('status', 1)
                 ->where('post_parent', 0)
-                ->orderBy('id', 'asc')
+                ->orderBy('post_order', 'asc')
                 ->paginate(12);
         }
         $value = $uri;
@@ -88,9 +88,10 @@ class FrontpageController extends Controller
         $branches = AssociatedPostModel::where('post_id', '161')->get();
         $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
 
+        $members = AssociatedPostModel::where('post_id', '106')->get();
 
-        // dd($posts,$data);
-        return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value','contact'));
+        // dd($members,$data);
+        return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value','contact','members'));
     }
 
     // public function pagedetail($uri)
@@ -116,7 +117,7 @@ class FrontpageController extends Controller
         $related = PostModel::where('post_type', $pos_type->id)->where('id', '!=', $data->id)->where('post_parent', 0)->get();
         $contact = PostTypeModel::where('id', '20')->first();
 
-        // dd($data,$data_child);
+        // dd($data,$associated_posts,$data_child);
         return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related','contact'));
     }
 
