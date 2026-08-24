@@ -110,7 +110,7 @@ class FrontpageController extends Controller
             $data->visiter = $data->visiter + 1;
             $data->save();
         }
-        $data_child = PostModel::where(['post_parent' => $data['id'], 'status' => '1'])->orderBy('post_order', 'desc')->paginate(12);
+        $data_child = PostModel::where(['post_parent' => $data['id'], 'status' => '1'])->orderBy('post_order', 'asc')->paginate(12);
         $associated_posts = AssociatedPostModel::where('post_id', $data['id'])->orderBy('ordering', 'asc')->paginate(12);
         $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
         $pos_type = PostTypeModel::where('id', $data->post_type)->first();
