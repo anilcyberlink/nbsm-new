@@ -46,19 +46,27 @@ class FrontpageController extends Controller
 
     public function index(Request $request)
     {
-        // dd(SettingModel::first());
         $banner = BannerModel::where('status', 1)->first();
-        $resource = PostModel::where('post_type', 19)->where('post_parent', '!=', 0)->where('show_in_home', "1")->orderBy('home_order', 'asc')->take(4)->get();
+        $contact = PostTypeModel::where('id', '20')->first();
+        $resource = PostTypeModel::where('id', 19)->first();
+        $publications = getPosttypePostPostchildShowInHomeByIdWithStatus($resource->id);
+        $about = PostTypeModel::where('id', 17)->first();
         $service = PostTypeModel::where('id', 16)->first();
+        $services = PostModel::where('post_type', $service->id)->take(6)->get();
+        $industry = PostTypeModel::where('id', 15)->first();
+        $industries = PostModel::where('post_type', $industry->id)->take(9)->get();
+        $nepal = PostTypeModel::where('id', 22)->first();
+        $building = PostModel::where('post_type', $nepal->id)->take(3)->get();
         $career = PostModel::where('id', 110)->first();
-        $industry = PostModel::where('post_type', 15)->where('show_in_home', "1")->take(3)->get();
+
+        $resources = PostModel::where('post_type', 19)->where('post_parent', '!=', 0)->where('show_in_home', "1")->orderBy('home_order', 'asc')->take(4)->get();
         $footer = PostModel::where('post_category', 2)->get();
-        $publication = getPosttypePostPostchildShowInHomeByIdWithStatus(19);
         //   $publication=PostModel::where('post_parent',94)->where('show_in_home',"1")->orderBy('home_order','asc')->take(3)->get();
         $news = PostModel::where('post_parent', 95)->where('show_in_home', "1")->orderBy('home_order', 'asc')->take(3)->get();
         $blog = PostModel::where('post_parent', 152)->where('show_in_home', "1")->orderBy('home_order', 'asc')->take(4)->get();
 
-        return view('themes.default.frontpage', compact('news', 'publication', 'resource', 'service', 'career', 'industry', 'blog', 'banner'));
+        // dd($industry,$industries);
+        return view('themes.default.frontpage', compact('banner','contact','resource','publications','about','service','services','industry','industries','nepal','building','career'));
         // return view('themes.default.frontpage',compact('news','publication','banner','resource','service','career','industry','blog'));
 
 

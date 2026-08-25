@@ -16,7 +16,7 @@ class FooterComposer{
 
 	public function compose(View $view){
 
-		$view->with('navigations', PostTypeModel::where(['is_menu'=>'1'])
+		$view->with('footeer', PostTypeModel::where(['is_footer_menu'=>'1'])
 			->orderBy('ordering','asc')
 			->get());
 

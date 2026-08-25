@@ -293,6 +293,15 @@ function getposts($id)
     $data = PostModel::where(['post_type' => $id, 'post_parent' => '0', 'status' => '1'])->orderBy('post_order', 'asc')->get();
     return $data;
 }
+function getpostparent($id)
+{
+    if (!$id) {
+        return null;
+    }
+    $data = PostModel::where('id', $id)->first();
+
+    return $data ? $data->post_title : null;
+}
 
 function getcategories($post_type)
 {

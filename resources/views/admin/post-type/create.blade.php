@@ -162,6 +162,18 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group nbms-form-group">
+                        <label class="col-lg-3 control-label">
+                            Is Footer Menu?
+                        </label>
+
+                        <div class="col-lg-8">
+                            <select name="is_footer_menu" class="form-control">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
 
 
                     {{-- Banner --}}

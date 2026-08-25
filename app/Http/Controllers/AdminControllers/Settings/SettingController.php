@@ -58,6 +58,9 @@ class SettingController extends Controller
         $data->field2 = $request->field2;
         $data->field3 = $request->field3;
         $data->field4 = $request->field4;
+        $data->year = $request->year;
+        $data->network = $request->network;
+        $data->office = $request->office;
         if($data->save()){
             return redirect()->back()->with('message','Update Sucessfully.');
         }
