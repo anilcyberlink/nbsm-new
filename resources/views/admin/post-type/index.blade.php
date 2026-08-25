@@ -14,88 +14,59 @@
 @section('content')
 
     <div class="tray tray-center nbms-page">
-
         {{-- Page Header --}}
         <div class="nbms-page-header">
-
             <div>
-
                 <h2 class="nbms-page-title">
                     <i class="fa fa-files-o"></i>
                     Manage Post Types
                 </h2>
-
                 <p class="nbms-page-subtitle">
                     Manage and organize your website content types
                 </p>
-
             </div>
-
         </div>
-
 
         {{-- Post Type Table --}}
         <div class="panel nbms-panel">
-
             <div class="panel-body nbms-panel-body">
-
                 <div class="table-responsive">
-
                     <table class="table admin-form theme-warning fs13 nbms-table">
-
                         <thead>
-
                             <tr>
-
                                 <th width="70">
                                     SN
                                 </th>
-
                                 <th>
                                     Post Type
                                 </th>
-
                                 <th width="120">
                                     Is Menu
                                 </th>
-
                                 <th width="120">
                                     Ordering
                                 </th>
-
                                 <th width="190">
                                     Date
                                 </th>
-
                                 <th width="150" class="text-center">
                                     Action
                                 </th>
-
                             </tr>
-
                         </thead>
-
                         <tbody>
-
                             @if (count($data) > 0)
-
                                 @foreach ($data as $row)
                                     <tr class="id{{ $row->id }}">
-
                                         <td class="nbms-sn">
                                             {{ $loop->iteration }}
                                         </td>
-
                                         <td>
-
                                             <div class="nbms-banner-title">
-                                                {{ ucfirst($row->post_type) }}
+                                                <a href="{{ url('admin/'.$row->uri)}}">{{ ucfirst($row->post_type) }}</a>
                                             </div>
-
                                         </td>
-
                                         <td>
-
                                             @if ($row->is_menu == 1)
                                                 <span class="nbms-status nbms-status-yes">
                                                     <i class="fa fa-check"></i>
@@ -107,27 +78,20 @@
                                                     No
                                                 </span>
                                             @endif
-
                                         </td>
-
                                         <td>
                                             {{ $row->ordering }}
                                         </td>
-
                                         <td class="nbms-date">
                                             {{ $row->created_at }}
                                         </td>
-
                                         <td class="text-center">
-
                                             <div class="nbms-action-buttons">
-
-                                                <a href="{{ url('type/posttype/' . $row->id . '/edit') }}" class="nbms-btn-edit"
-                                                    title="Edit Post Type">
+                                                <a href="{{ url('type/posttype/' . $row->id . '/edit') }}"
+                                                    class="nbms-btn-edit" title="Edit Post Type">
                                                     <i class="fa fa-pencil"></i>
                                                     Edit
                                                 </a>
-
 
                                                 @if (!is_empty_posttype($row->id))
                                                     {{--
@@ -141,44 +105,27 @@
                                                     </a>
                                                     --}}
                                                 @endif
-
                                             </div>
-
                                         </td>
-
                                     </tr>
                                 @endforeach
                             @else
                                 <tr>
-
                                     <td colspan="6" class="text-center nbms-empty-state">
-
                                         <i class="fa fa-files-o"></i>
-
                                         <div>
                                             No post types found.
                                         </div>
-
                                     </td>
-
                                 </tr>
-
                             @endif
-
                         </tbody>
-
                     </table>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 @endsection
-
 
 @section('scripts')
 

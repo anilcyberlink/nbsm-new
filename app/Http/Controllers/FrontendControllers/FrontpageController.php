@@ -90,7 +90,7 @@ class FrontpageController extends Controller
 
         $members = AssociatedPostModel::where('post_id', '106')->get();
 
-        // dd($members,$data);
+        // dd($posts,$data);
         return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value','contact','members'));
     }
 
