@@ -44,6 +44,9 @@
                                     Is Menu
                                 </th>
                                 <th width="120">
+                                    Is Footer
+                                </th>
+                                <th width="120">
                                     Ordering
                                 </th>
                                 <th width="190">
@@ -68,6 +71,19 @@
                                         </td>
                                         <td>
                                             @if ($row->is_menu == 1)
+                                                <span class="nbms-status nbms-status-yes">
+                                                    <i class="fa fa-check"></i>
+                                                    Yes
+                                                </span>
+                                            @else
+                                                <span class="nbms-status nbms-status-no">
+                                                    <i class="fa fa-minus"></i>
+                                                    No
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($row->is_footer_menu == 1)
                                                 <span class="nbms-status nbms-status-yes">
                                                     <i class="fa fa-check"></i>
                                                     Yes

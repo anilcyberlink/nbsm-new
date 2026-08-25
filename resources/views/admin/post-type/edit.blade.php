@@ -189,6 +189,29 @@
                         </div>
                     </div>
 
+                    {{-- Is Footer Menu --}}
+                    <div class="form-group nbms-form-group">
+                        <label class="col-lg-3 control-label">
+                            Is Footer Menu?
+                        </label>
+
+                        <div class="col-lg-8">
+
+                            <select name="is_footer_menu" class="form-control">
+
+                                <option value="0" {{ $data->is_footer_menu == '0' ? 'selected' : '' }}>
+                                    No
+                                </option>
+
+                                <option value="1" {{ $data->is_footer_menu == '1' ? 'selected' : '' }}>
+                                    Yes
+                                </option>
+
+                            </select>
+
+                        </div>
+                    </div>
+
 
                     {{-- Banner --}}
                     <div class="form-group nbms-form-group">

@@ -46,6 +46,44 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Professionals</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="field3" class="form-control" value="{{ $data->field3 }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Chartered Accountants</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="location2" class="form-control mb10"
+                                value="{{ $data->location2 }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Founded Year</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="year" class="form-control" value="{{ $data->year }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Countries — Moore Global network</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="network" class="form-control mb10"
+                                value="{{ $data->network }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Offices </label>
+                        <div class="col-lg-8">
+                            <input type="text" name="office" class="form-control mb10"
+                                value="{{ $data->office }}">
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -138,25 +176,6 @@
                             <input type="text" name="field1" class="form-control" value="{{ $data->field1 }}">
                         </div>
                     </div>
-
-
-                    {{-- <div class="form-group">
-                        <label class="col-lg-3 control-label">Field 3</label>
-                        <div class="col-lg-8">
-
-                            <input type="text" name="field3" class="form-control" value="{{ $data->field3 }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Field 4</label>
-                        <div class="col-lg-8">
-                            <input type="text" name="location2" class="form-control mb10"
-                                value="{{ $data->location2 }}">
-
-                            <input type="text" name="field4" class="form-control" value="{{ $data->field4 }}">
-                        </div>
-                    </div> --}}
 
                 </div>
             </div>
