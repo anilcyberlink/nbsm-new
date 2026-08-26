@@ -18,7 +18,7 @@
     <section class="section">
         <div class="wrap">
             @foreach ($posts as $row)
-                <div class="detail-block" style="padding:44px 0;">
+                <div class="detail-block" >
                     <div class="detail-grid reveal">
                         <div>
                             <div class="tag-num">{{ sprintf('%02d', $loop->iteration) }}</div>

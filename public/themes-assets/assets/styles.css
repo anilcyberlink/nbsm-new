@@ -239,7 +239,7 @@
       top: 38px;
       left: 0;
       right: 0;
-      z-index: 1000;
+      z-index: 1300;
       background: rgba(255, 255, 255, .98);
       backdrop-filter: blur(10px);
       box-shadow: 0 1px 0 var(--stone);
@@ -334,6 +334,142 @@
   .header-cta .btn-line {
       border-color: var(--stone-2);
       color: var(--ink);
+  }
+
+  /* ---------- HAMBURGER TOGGLE ---------- */
+  .nav-toggle {
+      display: none;
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1200;
+  }
+
+  .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease, background .3s ease;
+  }
+
+  .nav-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+  }
+
+  .nav-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(14, 63, 105, .45);
+      z-index: 1040;
+      opacity: 0;
+      transition: opacity .3s ease;
+  }
+
+  .nav-overlay.show {
+      display: block;
+      opacity: 1;
+  }
+
+  /* ---------- RESPONSIVE NAV ---------- */
+  @media (max-width: 900px) {
+      .utility-bar {
+          display: none;
+      }
+
+      header {
+          top: 0;
+          z-index: 1300;
+      }
+
+      header .wrap {
+          position: relative;
+      }
+
+      .nav-toggle {
+          display: flex;
+      }
+
+      .nav-group {
+          display: flex;
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 78%;
+          max-width: 340px;
+          height: 100vh;
+          background: var(--white);
+          box-shadow: var(--shadow);
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          padding: 90px 28px 28px;
+          gap: 8px;
+          transition: right .35s ease;
+          overflow-y: auto;
+          z-index: 1050;
+      }
+
+      .nav-group.open {
+          right: 0;
+      }
+
+      .nav-group nav {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          gap: 2px;
+      }
+
+      nav a.nav-link {
+          width: 100%;
+          padding: 14px 10px;
+          border-bottom: 1px solid var(--stone);
+      }
+
+      nav a.nav-link::after {
+          display: none;
+      }
+
+      .header-cta {
+          width: 100%;
+          margin-top: 18px;
+      }
+
+      .header-cta .btn {
+          width: 100%;
+          justify-content: center;
+      }
+
+      body.nav-open {
+          overflow: hidden;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .nav-group {
+          width: 100%;
+          max-width: 100%;
+      }
   }
 
   /* ---------- HERO ---------- */
@@ -2878,6 +3014,48 @@
       color: #fff;
   }
 
+  /* ---------- LEADER BRIEF: READ MORE ---------- */
+  .leader-brief-content {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: max-height .3s ease;
+  }
+
+  .leader-brief-content.expanded {
+      display: block;
+      -webkit-line-clamp: unset;
+  }
+
+  .leader-brief-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: var(--font);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--harbor);
+      cursor: pointer;
+  }
+
+  .leader-brief-toggle:hover {
+      color: var(--cyan);
+  }
+
+  .leader-brief-toggle svg {
+      width: 14px;
+      height: 14px;
+      transition: transform .25s ease;
+  }
+
+  .leader-brief-toggle.expanded svg {
+      transform: rotate(180deg);
+  }
 
   /* ============================================
    RESPONSIVE
@@ -3068,3 +3246,433 @@
       }
 
   }
+
+  /* ============================================
+   INDUSTRY / SECTOR PAGE — MOBILE
+   ============================================ */
+
+  @media (max-width: 600px) {
+
+      .page-header {
+          padding: 150px 0 50px;
+      }
+
+      .page-header h1 {
+          font-size: clamp(26px, 7vw, 34px);
+      }
+
+      .page-header p.lead {
+          font-size: 15px;
+      }
+
+      .breadcrumb {
+          font-size: 11.5px;
+          gap: 6px;
+      }
+
+      .industry-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+      }
+
+      .industry-tile {
+          min-height: auto;
+          padding: 22px 20px;
+      }
+
+      .career-banner {
+          padding: 50px 0;
+          text-align: center;
+      }
+
+      .career-banner .wrap {
+          flex-direction: column;
+          text-align: center;
+          gap: 24px;
+      }
+
+      .career-banner h2 {
+          max-width: none;
+          font-size: 24px;
+      }
+
+      .career-banner .btn {
+          width: 100%;
+          justify-content: center;
+      }
+  }
+
+  /* ============================================
+   HOME PAGE — SMALL MOBILE
+   ============================================ */
+
+  @media (max-width: 600px) {
+
+      /* ---- Hero ---- */
+      .hero {
+          padding: 150px 0 0;
+      }
+
+      .hero-inner {
+          padding-bottom: 40px;
+      }
+
+      .hero h1 {
+          font-size: clamp(28px, 8vw, 36px);
+          max-width: none;
+      }
+
+      .hero p.lead {
+          font-size: 15.5px;
+      }
+
+      .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 12px;
+      }
+
+      .hero-actions .btn {
+          justify-content: center;
+          width: 100%;
+      }
+
+      /* ---- Stat strip ---- */
+      .stat-strip .wrap {
+          justify-content: flex-start;
+          gap: 22px 30px;
+      }
+
+      .stat {
+          flex: 1 1 40%;
+      }
+
+      .stat .n {
+          font-size: 21px;
+      }
+
+      /* ---- Insights flagship ---- */
+      .if-head {
+          padding: 50px 0 30px;
+      }
+
+      .if-content {
+          padding: 32px 22px;
+      }
+
+      .if-cadence {
+          gap: 18px;
+      }
+
+      .if-more {
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+      }
+
+      /* ---- Global reach (vision2030) ---- */
+      .moore-badge {
+          padding: 14px 18px;
+          gap: 12px;
+      }
+
+      .moore-badge .l {
+          max-width: none;
+      }
+
+      /* ---- Final CTA ---- */
+      .final-cta {
+          padding: 70px 0;
+      }
+
+      .final-cta .actions {
+          flex-direction: column;
+          align-items: stretch;
+      }
+
+      .final-cta .actions .btn {
+          justify-content: center;
+      }
+
+      /* ---- Contact teaser ---- */
+      .office {
+          padding: 20px 0;
+      }
+  }
+
+  /* ============================================
+   FOOTER — SMALL MOBILE
+   ============================================ */
+
+  @media (max-width: 600px) {
+
+      footer {
+          padding: 50px 0 24px;
+      }
+
+      .footer-top {
+          grid-template-columns: 1fr;
+          gap: 30px;
+          padding-bottom: 34px;
+      }
+
+      .footer-top>div:first-child img {
+          width: 130px !important;
+      }
+
+      .footer-top h5 {
+          margin-bottom: 14px;
+      }
+
+      .footer-top ul {
+          gap: 9px;
+      }
+
+      .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          padding-top: 20px;
+      }
+  }
+
+  /* ============================================
+   ABOUT PANEL (About stats) — SMALL MOBILE
+   ============================================ */
+
+  @media (max-width: 600px) {
+
+      .about-panel {
+          padding: 28px 24px;
+      }
+
+      .about-panel .row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+          padding: 16px 0;
+      }
+
+      .about-panel .row .l {
+          text-align: left;
+          font-size: 11.5px;
+      }
+
+      .about-panel .row .n {
+          font-size: 22px;
+      }
+  }
+
+  .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+  }
+
+  @media (max-width: 600px) {
+      .cta-row {
+          flex-direction: column;
+          align-items: stretch;
+      }
+
+      .cta-row .btn {
+          justify-content: center;
+      }
+  }
+
+  /* ============================================
+   INDUSTRIES TEASER (home) — SMALL MOBILE
+   ============================================ */
+
+  @media (max-width: 600px) {
+
+      .section {
+          padding: 60px 0;
+      }
+
+      .section-tight {
+          padding: 44px 0;
+      }
+
+      .section-head {
+          margin-bottom: 32px;
+      }
+
+      .industry-grid {
+          gap: 12px;
+      }
+
+      .industry-tile {
+          min-height: auto;
+          padding: 20px 18px;
+      }
+
+      .industry-tile .num {
+          width: 30px;
+          height: 30px;
+          font-size: 11px;
+      }
+
+      .industry-tile h4 {
+          font-size: 15px;
+          margin-top: 14px;
+      }
+
+      div[style*="text-align: center"] .btn-line {
+          width: 100%;
+          justify-content: center;
+      }
+  }
+
+  /* ============================================
+   SERVICE DETAIL PAGE — SMALL MOBILE
+   ============================================ */
+
+  @media (max-width: 600px) {
+
+      .detail-block {
+          padding: 44px 0;
+      }
+
+      .detail-grid {
+          gap: 26px;
+      }
+
+      .detail-grid h2 {
+          font-size: 22px;
+      }
+
+      .detail-grid h3 {
+          font-size: 13.5px;
+          margin-top: 20px;
+      }
+
+      .icon-badge {
+          width: 48px;
+          height: 48px;
+          margin-bottom: 16px;
+      }
+
+      .icon-badge .icon {
+          width: 22px;
+          height: 22px;
+      }
+
+      .tag-num {
+          font-size: 12px;
+          margin-top: 4px;
+      }
+
+      .detail-grid ul li {
+          font-size: 13.5px;
+      }
+
+      .detail-grid .btn-line {
+          width: 100%;
+          justify-content: center;
+      }
+  }
+  /* ============================================
+   ABOUT PAGE — SMALL MOBILE
+   ============================================ */
+
+  @media (max-width: 600px) {
+
+      .about-media img {
+          aspect-ratio: 3/2;
+      }
+
+      /* ---- Leadership section ---- */
+      .leadership-section .section-head {
+          margin-bottom: 32px;
+      }
+
+      .leader-info {
+          padding: 22px 20px 20px;
+      }
+
+      .leader-info h3 {
+          font-size: 21px;
+      }
+
+      .leader-contact {
+          gap: 6px;
+      }
+
+      .leader-contact a {
+          font-size: 13.5px;
+      }
+
+      .leader-social {
+          margin-top: 14px;
+          gap: 10px;
+      }
+
+      .leader-brief {
+          padding: 20px 20px 22px;
+          font-size: 14px;
+      }
+  }
+
+  /* ============================================
+   LEADER CARD — FINE-TUNE SMALL MOBILE
+   ============================================ */
+
+  @media (max-width: 480px) {
+
+      .leader-image {
+          height: 240px;
+      }
+
+      .leader-info {
+          padding: 20px 18px 18px;
+      }
+
+      .leader-info h3 {
+          font-size: 20px;
+          margin: 6px 0 4px;
+      }
+
+      .leader-role,
+      .leader-info .eyebrow {
+          margin-bottom: 14px;
+      }
+
+      .leader-contact-item {
+          gap: 8px;
+      }
+
+      .leader-contact a {
+          font-size: 13px;
+      }
+
+      .leader-brief {
+          padding: 18px 18px 20px;
+          font-size: 13.5px;
+          line-height: 1.65;
+      }
+  }
+
+/* ============================================
+   MICROSITE TEASER PAGE — SMALL MOBILE
+   ============================================ */
+
+@media (max-width: 600px) {
+
+    .nepal-cta {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 26px 24px;
+        margin-top: 34px;
+        gap: 18px;
+    }
+
+    .nepal-cta p {
+        font-size: 15px;
+    }
+
+    .nepal-cta .btn {
+        justify-content: center;
+    }
+}
