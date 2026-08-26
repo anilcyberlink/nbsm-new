@@ -12,7 +12,7 @@
                     <div>
                         <h5>Company</h5>
                         <ul>
-                            @foreach ($footeer as $nav)
+                            @foreach ($footer as $nav)
                                 <li><a href="{{ url('page/' . posttype_url($nav->uri)) }}">{{ $nav->post_type }}</a></li>
                             @endforeach
                         </ul>
@@ -20,21 +20,17 @@
                     <div>
                         <h5>Services</h5>
                         <ul>
-                            <li><a href="services.php">Audit &amp; Assurance</a></li>
-                            <li><a href="services.php">Tax</a></li>
-                            <li><a href="services.php">Deal Advisory</a></li>
-                            <li><a href="services.php">Risk &amp; Consulting</a></li>
-                            <li><a href="global.php">Accounting &amp; Outsourcing</a></li>
-                            <li><a href="services.php">Technology &amp; Digital</a></li>
+                            @foreach ($services as $row)
+                                <li><a href="{{ route('page.pagedetail',['parent' => $service->uri,'uri' => $row->uri]) }}">{{ $row->post_title }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div>
-                        <h5>Global</h5>
+                        <h5>Our Industries</h5>
                         <ul>
-                            <li><a href="global.php">NBSM International</a></li>
-                            <li><a href="global.php">Moore Global</a></li>
-                            <li><a href="nepal.php">Doing Business in Nepal</a></li>
-                            <li><a href="global.php">Global Outsourcing</a></li>
+                            @foreach ($industries as $row)
+                                <li><a href="{{ route('page.pagedetail',['parent' => $industry->uri,'uri' => $row->uri]) }}">{{ $row->post_title }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div>
