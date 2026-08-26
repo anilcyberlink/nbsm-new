@@ -33,7 +33,9 @@
     <meta name="theme-color" content="#0e5d97">
     <!-- end favicon -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('themes-assets/assets/styles.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -45,34 +47,42 @@
     <div class="utility-bar" id="utility-bar">
         <div class="wrap">
             <div class="utility-left">
-                {{-- <a class="" href="{{ url('page/' . posttype_url($nepal->uri)) }}">{{ $nepal->post_type }}</a> --}}
-                <a class="" href="{{ url('page/' . posttype_url($about->uri)) }}">{{ ucfirst(strtolower($about->post_type)) }}</a>
-                <a class="" href="{{ url('page/' . posttype_url($global->uri)) }}">{{ ucfirst(strtolower($global->post_type)) }}</a>
+                <a class=""
+                    href="{{ url('page/' . posttype_url($about->uri)) }}">{{ ucfirst(strtolower($about->post_type)) }}</a>
+                <a class=""
+                    href="{{ url('page/' . posttype_url($global->uri)) }}">{{ ucfirst(strtolower($global->post_type)) }}</a>
             </div>
             <div class="utility-right">
                 <a href="{{ url('page/' . posttype_url($nepal->uri)) }}">{{ $nepal->post_type }}</a>
                 <span class="divider"></span>
-                <a href="{{ route('page.pagedetail',['parent' =>$about->uri ,'uri' => $career->uri]) }}">{{ $career->post_title }}</a>
-                {{-- <span class="divider"></span>
-                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-                    <circle cx="11" cy="11" r="7" />
-                    <path d="M21 21l-4.35-4.35" />
-                </svg> --}}
+                <a
+                    href="{{ route('page.pagedetail', ['parent' => $about->uri, 'uri' => $career->uri]) }}">{{ $career->post_title }}</a>
             </div>
         </div>
     </div>
 
     <header id="site-header">
         <div class="wrap">
-            <a href="{{url('/')}}" class="logo-wrap">
-                <img class="logo-mark logo-mark-dark" src="{{ asset('themes-assets/assets/img/logo-ondark.png') }}" alt="NBSM &amp; Associates"
-                    style="display: none" />
-                <img class="logo-mark logo-mark-light" src="{{ asset('themes-assets/assets/img/logo.png')}}" alt="NBSM &amp; Associates" />
+            <a href="{{ url('/') }}" class="logo-wrap">
+                <img class="logo-mark logo-mark-dark" src="{{ asset('themes-assets/assets/img/logo-ondark.png') }}"
+                    alt="NBSM &amp; Associates" style="display: none" />
+                <img class="logo-mark logo-mark-light" src="{{ asset('themes-assets/assets/img/logo.png') }}"
+                    alt="NBSM &amp; Associates" />
             </a>
-            <div class="nav-group">
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-overlay" id="navOverlay"></div>
+
+            <div class="nav-group" id="mainNav">
                 <nav>
                     @foreach ($navigations as $row)
-                        <a class="nav-link featured" href="{{ url('page/' . posttype_url($row->uri)) }}">{{ $row->post_type }}</a>
+                        <a class="nav-link featured"
+                            href="{{ url('page/' . posttype_url($row->uri)) }}">{{ $row->post_type }}</a>
                     @endforeach
                 </nav>
                 <div class="header-cta">
@@ -85,3 +95,4 @@
         </div>
     </header>
     <div id="top"></div>
+

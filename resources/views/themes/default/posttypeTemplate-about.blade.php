@@ -75,7 +75,7 @@
                 </p>
             </div>
 
-            <div class="leadership-grid reveal">
+            <div class="leadership-grid">
                 @foreach ($members as $mem)
                     <div class="leader-card">
                         <div class="leader-card-top">
@@ -151,8 +151,17 @@
                         </div>
 
                         <div class="leader-brief">
-                            {!! $mem->brief !!}
+                            <div class="leader-brief-content" id="brief-{{ $mem->id }}">
+                                {!! $mem->brief !!}
+                            </div>
+                            <button type="button" class="leader-brief-toggle" data-target="brief-{{ $mem->id }}">
+                                Read more
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </button>
                         </div>
+
                     </div>
                 @endforeach
             </div>

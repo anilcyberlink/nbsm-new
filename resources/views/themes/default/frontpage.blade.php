@@ -311,7 +311,7 @@
                 <span class="n">{{ $setting->network }}</span>
                 <span class="l">countries in the Moore Global network.</span>
             </div>
-            <div style="margin-top: 32px" class="reveal">
+            <div style="margin-top: 32px" class="reveal cta-row">
                 <a href="{{ url('page/' . posttype_url($nepal->uri)) }}" class="btn btn-cyan">Explore our global network
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M13 6l6 6-6 6" />
